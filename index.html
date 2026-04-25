@@ -603,8 +603,18 @@ async function countUsers(){
     try{const s=await db.collection('users').get();nUsers=s.size;
     document.getElementById('s-users').textContent=nUsers}catch(e){}
 }
-function getF(){const t=new Date();t.setHours(0,0,0,0);return allR.filter(r=>r.shift===cShift&&r.date===cDate&&new Date(r.date)>=t)}
-
+function getF(){
+    console.log('Filter:', cShift, cDate, 'Total rides:', allR.length);
+    allR.forEach(r => console.log('Ride:', r.driverName, r.shift, r.date));
+    const t=new Date();t.setHours(0,0,0,0);
+    return allR.filter(r=>{
+        const matchShift = r.shift === cShift;
+        const matchDate = r.date === cDate;
+        const notPast = new Date(r.date+'T23:59:59') >= t;
+        console.log('Check:', r.driverName, 'shift:', r.shift, '=', cShift, matchShift, 'date:', r.date, '=', cDate, matchDate, 'notPast:', notPast);
+        return matchShift && matchDate && notPast;
+    });
+}
 function renderRides(){
     const rides=getF(),c=document.getElementById('rides-list');
     document.getElementById('rides-count').textContent=rides.length;
