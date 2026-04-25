@@ -12,8 +12,6 @@
         :root{--primary:#1a237e;--primary-light:#3949ab;--primary-dark:#0d1642;--accent:#ff6f00;--accent-light:#ffa040;--success:#2e7d32;--danger:#c62828;--warning:#f57f17;--bg:#f0f2f5;--text:#1a1a2e;--text-light:#666;--text-muted:#999;--border:#e0e0e0;--shadow:0 2px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 32px rgba(0,0,0,.12);--radius:12px;--radius-sm:8px;--radius-lg:20px;--nav-height:64px;--header-height:56px}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
-        
-        /* Splash */
         .splash-screen{position:fixed;inset:0;background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s,visibility .5s}
         .splash-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
         .splash-content{text-align:center;color:#fff}
@@ -25,74 +23,58 @@
         @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
         @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
         @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-
-        /* Auth Screens */
         .auth-container{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:24px;background:linear-gradient(180deg,var(--primary),var(--primary-dark))}
         .auth-header{text-align:center;color:#fff;margin-bottom:32px}
-        .auth-logo{font-size:48px;margin-bottom:12px}
-        .auth-header h1{font-size:24px;font-weight:700;margin-bottom:4px}
+        .auth-logo{font-size:56px;margin-bottom:12px}
+        .auth-header h1{font-size:26px;font-weight:700;margin-bottom:4px}
         .auth-header h3{font-size:14px;font-weight:400;opacity:.85;margin-bottom:8px}
         .auth-header p{font-size:13px;opacity:.7}
         .auth-form{background:#fff;border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-lg)}
-        .auth-tabs{display:flex;gap:0;margin-bottom:20px;border-radius:var(--radius-sm);overflow:hidden;border:2px solid var(--border)}
-        .auth-tab{flex:1;padding:10px;border:none;background:var(--bg);font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;color:var(--text-muted)}
+        .auth-tabs{display:flex;margin-bottom:20px;border-radius:var(--radius-sm);overflow:hidden;border:2px solid var(--border)}
+        .auth-tab{flex:1;padding:12px;border:none;background:var(--bg);font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;color:var(--text-muted)}
         .auth-tab.active{background:var(--primary);color:#fff}
-        .auth-divider{text-align:center;margin:16px 0;color:var(--text-muted);font-size:13px;position:relative}
-        .auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:35%;height:1px;background:var(--border)}
-        .auth-divider::before{left:0}
-        .auth-divider::after{right:0}
-        .auth-error{background:#ffebee;color:var(--danger);padding:10px 14px;border-radius:var(--radius-sm);font-size:13px;margin-bottom:12px;display:none;align-items:center;gap:8px}
-        .auth-error.show{display:flex}
-        .auth-success{background:#e8f5e9;color:var(--success);padding:10px 14px;border-radius:var(--radius-sm);font-size:13px;margin-bottom:12px;display:none;align-items:center;gap:8px}
-        .auth-success.show{display:flex}
-        .auth-link{color:var(--primary);cursor:pointer;font-weight:600;text-decoration:underline}
-        .verify-icon{font-size:64px;color:var(--warning);text-align:center;margin-bottom:16px}
-        .verify-text{text-align:center;margin-bottom:20px}
-        .verify-text h3{font-size:18px;margin-bottom:8px}
+        .auth-msg{padding:10px 14px;border-radius:var(--radius-sm);font-size:13px;margin-bottom:12px;display:none;align-items:center;gap:8px}
+        .auth-msg.error{background:#ffebee;color:var(--danger)}
+        .auth-msg.success{background:#e8f5e9;color:var(--success)}
+        .auth-msg.show{display:flex}
+        .verify-icon{font-size:72px;color:var(--warning);text-align:center;margin:20px 0}
+        .verify-text{text-align:center;margin-bottom:24px}
+        .verify-text h3{font-size:20px;margin-bottom:10px}
         .verify-text p{font-size:14px;color:var(--text-light);line-height:1.6}
         .verify-email{font-weight:700;color:var(--primary)}
-        .password-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px}
-
-        /* Forms */
+        .password-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;z-index:2}
         .form-group{margin-bottom:16px}
         .form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
         .input-icon{position:relative}
-        .input-icon i:first-child{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px;pointer-events:none}
+        .input-icon>i:first-child{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px;pointer-events:none;z-index:1}
         .input-icon input,.input-icon select,.input-icon textarea{width:100%;padding:12px 12px 12px 42px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;background:var(--bg);transition:border-color .2s;appearance:none;-webkit-appearance:none}
         .input-icon textarea{resize:vertical}
         .input-icon input:focus,.input-icon select:focus,.input-icon textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,35,126,.1);background:#fff}
         .date-input{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;background:#fff}
-        
-        /* Buttons */
         .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s}
         .btn:disabled{opacity:.6;cursor:not-allowed}
         .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff}
         .btn-primary:active:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 16px rgba(26,35,126,.3)}
         .btn-success{background:var(--success);color:#fff}
         .btn-danger{background:var(--danger);color:#fff}
-        .btn-warning{background:var(--warning);color:#fff}
         .btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
-        .btn-outline-light{background:transparent;color:var(--text-light);border:2px solid var(--border)}
+        .btn-ghost{background:transparent;color:var(--text-muted);border:2px solid var(--border)}
         .btn-block{width:100%}
         .btn-lg{padding:16px 24px;font-size:16px;border-radius:var(--radius)}
         .btn-sm{padding:8px 16px;font-size:13px}
-
-        /* Header */
+        .forgot-link{text-align:right;margin-top:-8px;margin-bottom:16px}
+        .forgot-link a{font-size:12px;color:var(--primary);text-decoration:none;font-weight:500}
         .app-header{position:fixed;top:0;left:0;right:0;height:var(--header-height);background:linear-gradient(135deg,var(--primary-dark),var(--primary));display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
         .header-left{display:flex;align-items:center;gap:10px}
         .header-title{color:#fff;font-size:18px;font-weight:700}
-        .header-logo-icon{color:#fff;font-size:24px}
+        .header-logo-icon{color:#fff;font-size:22px}
         .header-right{display:flex;align-items:center;gap:8px}
         .header-btn{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:8px;border-radius:50%}
         .header-btn:active{background:rgba(255,255,255,.15)}
-        .online-count{background:var(--success);color:#fff;font-size:11px;padding:2px 8px;border-radius:12px;font-weight:600}
-
-        /* Content */
+        .user-badge{background:rgba(255,255,255,.2);color:#fff;font-size:11px;padding:4px 10px;border-radius:12px;font-weight:500;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .app-content{padding-top:var(--header-height);padding-bottom:calc(var(--nav-height) + 20px);min-height:100vh}
         .tab-content{display:none;padding:16px;animation:fadeIn .3s ease}
         .tab-content.active{display:block}
-
-        /* Welcome */
         .welcome-card{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:20px;border-radius:var(--radius-lg);margin-bottom:20px;box-shadow:0 4px 20px rgba(26,35,126,.3)}
         .welcome-card h2{font-size:20px;margin-bottom:6px}
         .welcome-card p{font-size:14px;opacity:.9}
@@ -100,8 +82,6 @@
         .stat-item{flex:1;background:rgba(255,255,255,.15);border-radius:var(--radius-sm);padding:8px;text-align:center}
         .stat-num{font-size:20px;font-weight:700}
         .stat-label{font-size:10px;opacity:.8}
-
-        /* Shift */
         .shift-selector,.date-selector{margin-bottom:16px}
         .shift-selector h3,.date-selector h3,.rides-section h3{font-size:15px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
         .shift-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -112,12 +92,8 @@
         .shift-btn.active{border-color:var(--primary);background:rgba(26,35,126,.05)}
         .shift-btn.active i{color:var(--primary)}
         .shift-btn:active{transform:scale(.97)}
-
-        /* Section */
         .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
         .badge{background:var(--primary);color:#fff;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600}
-
-        /* Ride Cards */
         .rides-list{display:flex;flex-direction:column;gap:12px}
         .ride-card{background:#fff;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);cursor:pointer;transition:all .2s;border-left:4px solid var(--primary)}
         .ride-card:active{transform:scale(.98)}
@@ -143,8 +119,6 @@
         .empty-state{text-align:center;padding:40px 20px;color:var(--text-muted)}
         .empty-state i{font-size:48px;margin-bottom:16px;opacity:.3}
         .empty-state p{font-size:15px;margin-bottom:8px}
-
-        /* Offer */
         .radio-group{display:grid;grid-template-columns:1fr 1fr;gap:8px}
         .radio-card{cursor:pointer}
         .radio-card input{display:none}
@@ -162,26 +136,18 @@
         .checkmark{width:22px;height:22px;border:2px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
         .checkbox-label input:checked~.checkmark{background:var(--primary);border-color:var(--primary)}
         .checkbox-label input:checked~.checkmark::after{content:'✓';color:#fff;font-size:14px;font-weight:700}
-
-        /* My Rides */
         .my-rides-tabs{display:flex;gap:8px;margin-bottom:16px}
         .my-rides-tab{flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--radius-sm);background:#fff;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
         .my-rides-tab.active{border-color:var(--primary);background:var(--primary);color:#fff}
-
-        /* Page */
         .page-header{margin-bottom:20px}
         .page-header h2{font-size:20px;display:flex;align-items:center;gap:10px}
         .page-header p{font-size:13px;color:var(--text-muted);margin-top:4px}
-
-        /* Nav */
         .bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-height);background:#fff;display:flex;box-shadow:0 -2px 12px rgba(0,0,0,.08);z-index:100;padding-bottom:env(safe-area-inset-bottom)}
         .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:none;color:var(--text-muted);font-size:10px;font-family:inherit;font-weight:500;cursor:pointer}
         .nav-item i{font-size:20px;transition:transform .2s}
         .nav-item.active{color:var(--primary)}
         .nav-item.active i{transform:scale(1.1)}
         .nav-item:nth-child(2) i{font-size:28px;color:var(--accent)}
-
-        /* Modal */
         .modal{position:fixed;inset:0;z-index:200;display:flex;align-items:flex-end;justify-content:center}
         .modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5)}
         .modal-content{position:relative;background:#fff;border-radius:var(--radius-lg) var(--radius-lg) 0 0;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp .3s ease}
@@ -189,16 +155,12 @@
         .modal-header h3{font-size:18px;font-weight:600}
         .modal-close{background:none;border:none;font-size:20px;color:var(--text-muted);cursor:pointer;padding:8px}
         .modal-body{padding:20px}
-
-        /* Profile */
         .profile-avatar{text-align:center;font-size:64px;color:var(--primary);margin-bottom:16px}
         .profile-info{margin-bottom:24px}
         .profile-info-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
         .profile-info-item i{width:20px;color:var(--primary);text-align:center;flex-shrink:0}
         .profile-info-item span{font-weight:600}
-        .verified-badge{background:#e8f5e9;color:var(--success);font-size:11px;padding:2px 8px;border-radius:12px;font-weight:600}
-        
-        /* Detail */
+        .verified-badge{background:#e8f5e9;color:var(--success);font-size:11px;padding:2px 8px;border-radius:12px;font-weight:600;margin-left:6px}
         .ride-detail-section{margin-bottom:20px}
         .ride-detail-section h4{font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
         .detail-row{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:15px}
@@ -208,26 +170,17 @@
         .passenger-avatar{width:32px;height:32px;border-radius:50%;background:var(--primary-light);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;flex-shrink:0}
         .ride-actions{display:flex;gap:8px;margin-top:16px}
         .ride-actions .btn{flex:1}
-
-        /* Toast */
-        .toast{position:fixed;bottom:calc(var(--nav-height) + 20px);left:50%;transform:translateX(-50%) translateY(100px);background:var(--text);color:#fff;padding:12px 24px;border-radius:24px;font-size:14px;font-weight:500;z-index:300;transition:transform .3s;white-space:nowrap;box-shadow:var(--shadow-lg);max-width:90vw;text-align:center}
+        .toast{position:fixed;bottom:calc(var(--nav-height) + 20px);left:50%;transform:translateX(-50%) translateY(100px);background:var(--text);color:#fff;padding:12px 24px;border-radius:24px;font-size:14px;font-weight:500;z-index:300;transition:transform .3s;box-shadow:var(--shadow-lg);max-width:90vw;text-align:center}
         .toast.show{transform:translateX(-50%) translateY(0)}
         .toast.success{background:var(--success)}
         .toast.error{background:var(--danger)}
-
-        /* Info */
         .info-card{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:12px}
         .info-card h3{margin-bottom:8px}
         .info-card h4{margin-bottom:6px}
         .info-card p,.info-card ol{font-size:14px;color:var(--text-light);line-height:1.8}
         .info-card ol{padding-left:20px}
-
-        .connection-bar{position:fixed;top:var(--header-height);left:0;right:0;background:var(--danger);color:#fff;text-align:center;padding:4px;font-size:12px;font-weight:600;z-index:99;display:none}
+        .connection-bar{position:fixed;top:var(--header-height);left:0;right:0;background:var(--danger);color:#fff;text-align:center;padding:6px;font-size:12px;font-weight:600;z-index:99;display:none}
         .connection-bar.show{display:block}
-
-        .forgot-link{text-align:right;margin-top:-8px;margin-bottom:12px}
-        .forgot-link a{font-size:12px;color:var(--primary);text-decoration:none;font-weight:500}
-
         @media(min-width:600px){.app-content,.auth-container{max-width:480px;margin:0 auto}.bottom-nav{max-width:480px;left:50%;transform:translateX(-50%)}.app-header{max-width:480px;left:50%;transform:translateX(-50%)}.modal-content{max-width:480px}}
     </style>
 </head>
@@ -243,106 +196,73 @@
     </div>
 </div>
 
-<div id="connection-bar" class="connection-bar">⚠️ Keine Verbindung</div>
+<div id="connection-bar" class="connection-bar">⚠️ Keine Internetverbindung</div>
 
-<!-- ==================== AUTH SCREEN ==================== -->
+<!-- ====== AUTH SCREEN ====== -->
 <div id="auth-screen" class="screen" style="display:none">
     <div class="auth-container">
         <div class="auth-header">
             <div class="auth-logo"><i class="fas fa-car-side"></i></div>
             <h1>WilkinsonRide</h1>
             <h3>Wilkinson Sword Solingen</h3>
-            <p>Registriere dich oder melde dich an</p>
+            <p>Gemeinsam zur Schicht fahren 🚗</p>
         </div>
         <div class="auth-form">
-            <!-- Tabs -->
             <div class="auth-tabs">
-                <button class="auth-tab active" id="tab-register-btn">Registrieren</button>
-                <button class="auth-tab" id="tab-login-btn">Anmelden</button>
+                <button class="auth-tab active" id="tab-reg-btn">Registrieren</button>
+                <button class="auth-tab" id="tab-log-btn">Anmelden</button>
             </div>
+            <div id="auth-msg" class="auth-msg"><i class="fas fa-info-circle"></i><span id="auth-msg-text"></span></div>
 
-            <div id="auth-error" class="auth-error"><i class="fas fa-exclamation-circle"></i><span id="auth-error-text"></span></div>
-            <div id="auth-success" class="auth-success"><i class="fas fa-check-circle"></i><span id="auth-success-text"></span></div>
-
-            <!-- REGISTER FORM -->
+            <!-- REGISTER -->
             <form id="register-form">
                 <div class="form-group">
-                    <label>Vor- & Nachname *</label>
+                    <label>Vor- & Nachname</label>
                     <div class="input-icon"><i class="fas fa-user"></i>
-                        <input type="text" id="reg-name" placeholder="Max Mustermann" required>
+                        <input type="text" id="reg-name" placeholder="Max Mustermann" required autocomplete="name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>E-Mail Adresse *</label>
+                    <label>E-Mail Adresse</label>
                     <div class="input-icon"><i class="fas fa-envelope"></i>
-                        <input type="email" id="reg-email" placeholder="max.mustermann@email.de" required>
+                        <input type="email" id="reg-email" placeholder="max.mustermann@email.de" required autocomplete="email">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Passwort * (mind. 6 Zeichen)</label>
+                    <label>Passwort (mind. 6 Zeichen)</label>
                     <div class="input-icon"><i class="fas fa-lock"></i>
-                        <input type="password" id="reg-password" placeholder="••••••••" minlength="6" required>
-                        <button type="button" class="password-toggle" onclick="togglePw('reg-password',this)"><i class="fas fa-eye"></i></button>
+                        <input type="password" id="reg-pw" placeholder="••••••••" minlength="6" required>
+                        <button type="button" class="password-toggle" onclick="togglePw('reg-pw',this)"><i class="fas fa-eye"></i></button>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Passwort wiederholen *</label>
+                    <label>Passwort wiederholen</label>
                     <div class="input-icon"><i class="fas fa-lock"></i>
-                        <input type="password" id="reg-password2" placeholder="••••••••" minlength="6" required>
+                        <input type="password" id="reg-pw2" placeholder="••••••••" minlength="6" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Abteilung *</label>
-                    <div class="input-icon"><i class="fas fa-building"></i>
-                        <select id="reg-abteilung" required>
-                            <option value="">Wählen...</option>
-                            <option>Produktion</option>
-                            <option>Verpackung</option>
-                            <option>Logistik</option>
-                            <option>Qualitätssicherung</option>
-                            <option>Technik / Instandhaltung</option>
-                            <option>Verwaltung</option>
-                            <option>Einkauf</option>
-                            <option>Personal / HR</option>
-                            <option>IT</option>
-                            <option>Sonstiges</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Telefon / WhatsApp *</label>
-                    <div class="input-icon"><i class="fas fa-phone"></i>
-                        <input type="tel" id="reg-telefon" placeholder="0170 1234567" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Wohnort *</label>
-                    <div class="input-icon"><i class="fas fa-map-marker-alt"></i>
-                        <input type="text" id="reg-wohnort" placeholder="z.B. Remscheid, Solingen-Ohligs..." required>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg" id="reg-submit">
-                    <i class="fas fa-user-plus"></i> Registrieren
+                <button type="submit" class="btn btn-primary btn-block btn-lg" id="reg-btn">
+                    <i class="fas fa-user-plus"></i> Konto erstellen
                 </button>
             </form>
 
-            <!-- LOGIN FORM -->
+            <!-- LOGIN -->
             <form id="login-form" style="display:none">
                 <div class="form-group">
                     <label>E-Mail Adresse</label>
                     <div class="input-icon"><i class="fas fa-envelope"></i>
-                        <input type="email" id="login-email" placeholder="max.mustermann@email.de" required>
+                        <input type="email" id="log-email" placeholder="max.mustermann@email.de" required autocomplete="email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Passwort</label>
                     <div class="input-icon"><i class="fas fa-lock"></i>
-                        <input type="password" id="login-password" placeholder="••••••••" required>
-                        <button type="button" class="password-toggle" onclick="togglePw('login-password',this)"><i class="fas fa-eye"></i></button>
+                        <input type="password" id="log-pw" placeholder="••••••••" required>
+                        <button type="button" class="password-toggle" onclick="togglePw('log-pw',this)"><i class="fas fa-eye"></i></button>
                     </div>
                 </div>
-                <div class="forgot-link"><a href="#" id="forgot-pw-link">Passwort vergessen?</a></div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg" id="login-submit">
+                <div class="forgot-link"><a href="#" id="forgot-link">Passwort vergessen?</a></div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg" id="log-btn">
                     <i class="fas fa-sign-in-alt"></i> Anmelden
                 </button>
             </form>
@@ -350,70 +270,31 @@
     </div>
 </div>
 
-<!-- ==================== VERIFY SCREEN ==================== -->
+<!-- ====== VERIFY SCREEN ====== -->
 <div id="verify-screen" class="screen" style="display:none">
     <div class="auth-container">
-        <div class="auth-form" style="text-align:center">
+        <div class="auth-form">
             <div class="verify-icon"><i class="fas fa-envelope-open-text"></i></div>
             <div class="verify-text">
-                <h3>E-Mail bestätigen</h3>
-                <p>Wir haben dir eine Bestätigungs-E-Mail an<br><span class="verify-email" id="verify-email-display">email@example.com</span><br>gesendet.</p>
-                <p style="margin-top:12px">Klicke auf den Link in der E-Mail und kehre dann hierher zurück.</p>
+                <h3>📧 E-Mail bestätigen</h3>
+                <p>Wir haben eine Bestätigungs-E-Mail an<br><span class="verify-email" id="verify-email">email</span><br>gesendet.</p>
+                <p style="margin-top:10px;font-size:13px">Öffne dein Postfach, klicke den Link und komm zurück.</p>
+                <p style="margin-top:6px;font-size:12px;color:var(--text-muted)">📌 Schau auch im Spam-Ordner nach!</p>
             </div>
-            <button class="btn btn-primary btn-block btn-lg" id="verify-check-btn" style="margin-bottom:12px">
-                <i class="fas fa-sync-alt"></i> Ich habe bestätigt
+            <button class="btn btn-primary btn-block btn-lg" id="verify-done-btn" style="margin-bottom:10px">
+                <i class="fas fa-check-circle"></i> Ich habe bestätigt
             </button>
-            <button class="btn btn-outline btn-block" id="verify-resend-btn" style="margin-bottom:12px">
-                <i class="fas fa-paper-plane"></i> Erneut senden
+            <button class="btn btn-outline btn-block" id="verify-resend-btn" style="margin-bottom:10px">
+                <i class="fas fa-redo"></i> Erneut senden
             </button>
-            <button class="btn btn-outline-light btn-block btn-sm" id="verify-logout-btn">
-                <i class="fas fa-arrow-left"></i> Anderes Konto verwenden
+            <button class="btn btn-ghost btn-block btn-sm" id="verify-back-btn">
+                <i class="fas fa-arrow-left"></i> Anderes Konto
             </button>
         </div>
     </div>
 </div>
 
-<!-- ==================== PROFILE SETUP SCREEN ==================== -->
-<div id="setup-screen" class="screen" style="display:none">
-    <div class="auth-container">
-        <div class="auth-header">
-            <div class="auth-logo"><i class="fas fa-user-check"></i></div>
-            <h1>Profil vervollständigen</h1>
-            <p>Fast geschafft! Noch ein paar Infos...</p>
-        </div>
-        <form class="auth-form" id="setup-form">
-            <div class="form-group">
-                <label>Abteilung *</label>
-                <div class="input-icon"><i class="fas fa-building"></i>
-                    <select id="setup-abteilung" required>
-                        <option value="">Wählen...</option>
-                        <option>Produktion</option><option>Verpackung</option><option>Logistik</option>
-                        <option>Qualitätssicherung</option><option>Technik / Instandhaltung</option>
-                        <option>Verwaltung</option><option>Einkauf</option><option>Personal / HR</option>
-                        <option>IT</option><option>Sonstiges</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Telefon / WhatsApp *</label>
-                <div class="input-icon"><i class="fas fa-phone"></i>
-                    <input type="tel" id="setup-telefon" placeholder="0170 1234567" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Wohnort *</label>
-                <div class="input-icon"><i class="fas fa-map-marker-alt"></i>
-                    <input type="text" id="setup-wohnort" placeholder="z.B. Remscheid" required>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block btn-lg">
-                <i class="fas fa-check"></i> Profil speichern & los!
-            </button>
-        </form>
-    </div>
-</div>
-
-<!-- ==================== MAIN APP ==================== -->
+<!-- ====== MAIN APP ====== -->
 <div id="app" class="screen" style="display:none">
     <header class="app-header">
         <div class="header-left">
@@ -421,7 +302,7 @@
             <span class="header-title">WilkinsonRide</span>
         </div>
         <div class="header-right">
-            <span id="online-count" class="online-count">0</span>
+            <span id="user-badge" class="user-badge"></span>
             <button id="btn-profile" class="header-btn"><i class="fas fa-user-circle"></i></button>
         </div>
     </header>
@@ -430,16 +311,16 @@
         <!-- HOME -->
         <section id="tab-home" class="tab-content active">
             <div class="welcome-card">
-                <h2>Hallo, <span id="user-display-name">Kollege</span>! 👋</h2>
-                <p>Finde Mitfahrgelegenheiten zur nächsten Schicht.</p>
+                <h2>Hallo, <span id="display-name">Kollege</span>! 👋</h2>
+                <p>Finde Mitfahrgelegenheiten zur nächsten Schicht bei Wilkinson Sword.</p>
                 <div class="stats-row">
-                    <div class="stat-item"><div class="stat-num" id="stat-rides">0</div><div class="stat-label">Fahrten heute</div></div>
-                    <div class="stat-item"><div class="stat-num" id="stat-seats">0</div><div class="stat-label">Freie Plätze</div></div>
-                    <div class="stat-item"><div class="stat-num" id="stat-users">0</div><div class="stat-label">Nutzer</div></div>
+                    <div class="stat-item"><div class="stat-num" id="s-rides">0</div><div class="stat-label">Fahrten heute</div></div>
+                    <div class="stat-item"><div class="stat-num" id="s-seats">0</div><div class="stat-label">Plätze frei</div></div>
+                    <div class="stat-item"><div class="stat-num" id="s-users">0</div><div class="stat-label">Mitglieder</div></div>
                 </div>
             </div>
             <div class="shift-selector">
-                <h3><i class="fas fa-clock"></i> Schicht wählen</h3>
+                <h3><i class="fas fa-clock"></i> Schicht</h3>
                 <div class="shift-buttons">
                     <button class="shift-btn active" data-shift="frueh"><i class="fas fa-sun"></i><span>Frühschicht</span><small>06:00 - 14:00</small></button>
                     <button class="shift-btn" data-shift="spaet"><i class="fas fa-cloud-sun"></i><span>Spätschicht</span><small>14:00 - 22:00</small></button>
@@ -466,28 +347,29 @@
             <form id="offer-form">
                 <div class="form-group"><label>Schicht</label>
                     <div class="radio-group">
-                        <label class="radio-card"><input type="radio" name="offer-shift" value="frueh" checked><span class="radio-content"><i class="fas fa-sun"></i>Früh<br><small>06-14</small></span></label>
-                        <label class="radio-card"><input type="radio" name="offer-shift" value="spaet"><span class="radio-content"><i class="fas fa-cloud-sun"></i>Spät<br><small>14-22</small></span></label>
-                        <label class="radio-card"><input type="radio" name="offer-shift" value="nacht"><span class="radio-content"><i class="fas fa-moon"></i>Nacht<br><small>22-06</small></span></label>
-                        <label class="radio-card"><input type="radio" name="offer-shift" value="normal"><span class="radio-content"><i class="fas fa-briefcase"></i>Normal<br><small>07:30-16</small></span></label>
+                        <label class="radio-card"><input type="radio" name="o-shift" value="frueh" checked><span class="radio-content"><i class="fas fa-sun"></i>Früh<br><small>06-14</small></span></label>
+                        <label class="radio-card"><input type="radio" name="o-shift" value="spaet"><span class="radio-content"><i class="fas fa-cloud-sun"></i>Spät<br><small>14-22</small></span></label>
+                        <label class="radio-card"><input type="radio" name="o-shift" value="nacht"><span class="radio-content"><i class="fas fa-moon"></i>Nacht<br><small>22-06</small></span></label>
+                        <label class="radio-card"><input type="radio" name="o-shift" value="normal"><span class="radio-content"><i class="fas fa-briefcase"></i>Normal<br><small>07:30-16</small></span></label>
                     </div>
                 </div>
-                <div class="form-group"><label>Datum</label><div class="input-icon"><i class="fas fa-calendar"></i><input type="date" id="offer-date" required></div></div>
-                <div class="form-group"><label>Abfahrtsort</label><div class="input-icon"><i class="fas fa-map-marker-alt"></i><input type="text" id="offer-start" placeholder="z.B. Remscheid Hbf" required></div></div>
-                <div class="form-group"><label>Abfahrtszeit</label><div class="input-icon"><i class="fas fa-clock"></i><input type="time" id="offer-time" required></div></div>
+                <div class="form-group"><label>Datum *</label><div class="input-icon"><i class="fas fa-calendar"></i><input type="date" id="o-date" required></div></div>
+                <div class="form-group"><label>Abfahrtsort *</label><div class="input-icon"><i class="fas fa-map-marker-alt"></i><input type="text" id="o-start" placeholder="z.B. Remscheid Hbf, Wuppertal..." required></div></div>
+                <div class="form-group"><label>Abfahrtszeit *</label><div class="input-icon"><i class="fas fa-clock"></i><input type="time" id="o-time" required></div></div>
                 <div class="form-group"><label>Freie Plätze</label>
                     <div class="seats-selector">
-                        <button type="button" class="seats-btn" id="seats-minus"><i class="fas fa-minus"></i></button>
-                        <span id="seats-count" class="seats-display">3</span>
-                        <input type="hidden" id="offer-seats" value="3">
-                        <button type="button" class="seats-btn" id="seats-plus"><i class="fas fa-plus"></i></button>
+                        <button type="button" class="seats-btn" id="seat-m"><i class="fas fa-minus"></i></button>
+                        <span id="seat-d" class="seats-display">3</span>
+                        <input type="hidden" id="o-seats" value="3">
+                        <button type="button" class="seats-btn" id="seat-p"><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
-                <div class="form-group"><label>Route</label><div class="input-icon"><i class="fas fa-road"></i><input type="text" id="offer-route" placeholder="z.B. über Haan, Hilden..."></div></div>
-                <div class="form-group"><label>Hinweise</label><div class="input-icon"><i class="fas fa-comment"></i><textarea id="offer-notes" placeholder="z.B. Nichtraucher, Treffpunkt..." rows="3"></textarea></div></div>
-                <div class="form-group checkbox-group"><label class="checkbox-label"><input type="checkbox" id="offer-return" checked><span class="checkmark"></span><span>Rückfahrt anbieten</span></label></div>
-                <div class="form-group checkbox-group"><label class="checkbox-label"><input type="checkbox" id="offer-recurring"><span class="checkmark"></span><span>Wöchentlich wiederholen</span></label></div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg" id="offer-submit-btn"><i class="fas fa-paper-plane"></i> Fahrt veröffentlichen</button>
+                <div class="form-group"><label>Telefon / WhatsApp (für Mitfahrer)</label><div class="input-icon"><i class="fas fa-phone"></i><input type="tel" id="o-phone" placeholder="0170 1234567"></div></div>
+                <div class="form-group"><label>Route / Zwischenstopps</label><div class="input-icon"><i class="fas fa-road"></i><input type="text" id="o-route" placeholder="z.B. über Haan, Hilden, A46..."></div></div>
+                <div class="form-group"><label>Hinweise</label><div class="input-icon"><i class="fas fa-comment"></i><textarea id="o-notes" placeholder="z.B. Nichtraucher, Treffpunkt P3..." rows="3"></textarea></div></div>
+                <div class="form-group checkbox-group"><label class="checkbox-label"><input type="checkbox" id="o-return" checked><span class="checkmark"></span><span>Rückfahrt nach Schichtende anbieten</span></label></div>
+                <div class="form-group checkbox-group"><label class="checkbox-label"><input type="checkbox" id="o-recur"><span class="checkmark"></span><span>Wöchentlich wiederholen</span></label></div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg" id="o-submit"><i class="fas fa-paper-plane"></i> Fahrt veröffentlichen</button>
             </form>
         </section>
 
@@ -503,11 +385,12 @@
 
         <!-- INFO -->
         <section id="tab-info" class="tab-content">
-            <div class="page-header"><h2><i class="fas fa-info-circle"></i> Info</h2></div>
+            <div class="page-header"><h2><i class="fas fa-info-circle"></i> Info & Hilfe</h2></div>
             <div class="info-card"><h3>🏭 Wilkinson Sword Solingen</h3><p>Schillerstraße 26, 42699 Solingen</p></div>
-            <div class="info-card"><h4>🕐 Schichtzeiten</h4><p>🌅 Frühschicht: 06:00-14:00<br>☀️ Spätschicht: 14:00-22:00<br>🌙 Nachtschicht: 22:00-06:00<br>💼 Normalschicht: 07:30-16:00</p></div>
-            <div class="info-card"><h4>💡 Tipps</h4><p>• Sei pünktlich<br>• Teilt die Spritkosten fair<br>• Gebt rechtzeitig Bescheid bei Absage</p></div>
-            <div class="info-card" style="text-align:center"><p style="color:var(--text-muted)"><i class="fas fa-code"></i> WilkinsonRide v2.0</p></div>
+            <div class="info-card"><h4>📋 So funktioniert's</h4><ol><li>Registriere dich mit Name & E-Mail</li><li>Bestätige deine E-Mail Adresse</li><li>Biete Fahrten an oder buche einen Platz</li><li>Kontaktiere den Fahrer per Telefon/WhatsApp</li></ol></div>
+            <div class="info-card"><h4>🕐 Schichtzeiten</h4><p>🌅 Frühschicht: 06:00 - 14:00<br>☀️ Spätschicht: 14:00 - 22:00<br>🌙 Nachtschicht: 22:00 - 06:00<br>💼 Normalschicht: 07:30 - 16:00</p></div>
+            <div class="info-card"><h4>💡 Tipps</h4><p>• Sei pünktlich am Treffpunkt<br>• Teilt die Spritkosten fair<br>• Sagt rechtzeitig ab<br>• Respektiert Nichtraucher-Wünsche</p></div>
+            <div class="info-card" style="text-align:center"><p style="color:var(--text-muted);font-size:12px">WilkinsonRide v2.1 · Gemeinsam fahren 🌿</p></div>
         </section>
     </main>
 
@@ -523,7 +406,7 @@
 <div id="profile-modal" class="modal" style="display:none">
     <div class="modal-overlay"></div>
     <div class="modal-content">
-        <div class="modal-header"><h3>Profil</h3><button class="modal-close" id="close-profile"><i class="fas fa-times"></i></button></div>
+        <div class="modal-header"><h3>Mein Profil</h3><button class="modal-close" id="close-profile"><i class="fas fa-times"></i></button></div>
         <div class="modal-body">
             <div class="profile-avatar"><i class="fas fa-user-circle"></i></div>
             <div id="profile-info" class="profile-info"></div>
@@ -532,12 +415,12 @@
     </div>
 </div>
 
-<!-- Ride Detail Modal -->
-<div id="ride-detail-modal" class="modal" style="display:none">
+<!-- Detail Modal -->
+<div id="detail-modal" class="modal" style="display:none">
     <div class="modal-overlay"></div>
     <div class="modal-content">
         <div class="modal-header"><h3>Fahrt-Details</h3><button class="modal-close" id="close-detail"><i class="fas fa-times"></i></button></div>
-        <div id="ride-detail-body" class="modal-body"></div>
+        <div id="detail-body" class="modal-body"></div>
     </div>
 </div>
 
@@ -550,460 +433,364 @@
 
 <script>
 // ============================================================
-//  FIREBASE INIT
+//  FIREBASE
 // ============================================================
 firebase.initializeApp({
-    apiKey: "AIzaSyDn6UMzhiBpPctta3o3r68roSD3VtpqEhE",
-    authDomain: "wilkinson-ride.firebaseapp.com",
-    projectId: "wilkinson-ride",
-    storageBucket: "wilkinson-ride.firebasestorage.app",
-    messagingSenderId: "310957375819",
-    appId: "1:310957375819:web:32957edea2b773458a68ce",
-    measurementId: "G-W6B5T718LE"
+    apiKey:"AIzaSyDn6UMzhiBpPctta3o3r68roSD3VtpqEhE",
+    authDomain:"wilkinson-ride.firebaseapp.com",
+    projectId:"wilkinson-ride",
+    storageBucket:"wilkinson-ride.firebasestorage.app",
+    messagingSenderId:"310957375819",
+    appId:"1:310957375819:web:32957edea2b773458a68ce",
+    measurementId:"G-W6B5T718LE"
 });
-const auth = firebase.auth();
-const db = firebase.firestore();
-auth.languageCode = 'de';
+const auth=firebase.auth();
+const db=firebase.firestore();
+auth.languageCode='de';
 
 // ============================================================
 //  GLOBALS
 // ============================================================
-const SHIFT_LABELS={frueh:'Frühschicht (06:00–14:00)',spaet:'Spätschicht (14:00–22:00)',nacht:'Nachtschicht (22:00–06:00)',normal:'Normalschicht (07:30–16:00)'};
-const SHIFT_SHORT={frueh:'Frühschicht',spaet:'Spätschicht',nacht:'Nachtschicht',normal:'Normalschicht'};
-const getToday=()=>new Date().toISOString().split('T')[0];
-let userProfile=null;
-let currentShift='frueh';
-let currentDate=getToday();
-let allRides=[];
-let unsubRides=null;
-let totalUsers=0;
+const SL={frueh:'Frühschicht (06:00–14:00)',spaet:'Spätschicht (14:00–22:00)',nacht:'Nachtschicht (22:00–06:00)',normal:'Normalschicht (07:30–16:00)'};
+const SS={frueh:'Frühschicht',spaet:'Spätschicht',nacht:'Nachtschicht',normal:'Normalschicht'};
+const td=()=>new Date().toISOString().split('T')[0];
+let UP=null; // user profile {uid,name,email}
+let cShift='frueh',cDate=td(),allR=[],unsubR=null,nUsers=0;
 
 // ============================================================
-//  SCREENS
+//  HELPERS
 // ============================================================
-function hideAllScreens(){
-    ['auth-screen','verify-screen','setup-screen','app'].forEach(id=>
-        document.getElementById(id).style.display='none');
-}
-function showScreen(id){hideAllScreens();document.getElementById(id).style.display='';}
+function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function cleanPh(p){if(!p)return'';return p.replace(/[^0-9]/g,'').replace(/^0/,'49')}
+function showM(id){document.getElementById(id).style.display='flex'}
+function hideM(id){document.getElementById(id).style.display='none'}
+function toast(m,t=''){const e=document.getElementById('toast');e.textContent=m;e.className='toast show '+t;clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),3500)}
+function hideAll(){['auth-screen','verify-screen','app'].forEach(i=>document.getElementById(i).style.display='none')}
+function show(id){hideAll();document.getElementById(id).style.display=''}
+function togglePw(id,btn){const i=document.getElementById(id);const p=i.type==='password';i.type=p?'text':'password';btn.innerHTML=p?'<i class="fas fa-eye-slash"></i>':'<i class="fas fa-eye"></i>'}
+function authMsg(msg,type){const e=document.getElementById('auth-msg');document.getElementById('auth-msg-text').textContent=msg;e.className='auth-msg show '+type}
+function clearMsg(){document.getElementById('auth-msg').classList.remove('show')}
+function errMsg(c){const m={'auth/email-already-in-use':'Diese E-Mail ist bereits registriert.','auth/invalid-email':'Ungültige E-Mail.','auth/weak-password':'Passwort zu kurz (mind. 6 Zeichen).','auth/user-not-found':'Kein Konto mit dieser E-Mail.','auth/wrong-password':'Falsches Passwort.','auth/invalid-credential':'E-Mail oder Passwort falsch.','auth/too-many-requests':'Zu viele Versuche. Warte einen Moment.','auth/network-request-failed':'Keine Internetverbindung.'};return m[c]||'Fehler: '+c}
 
 // ============================================================
-//  AUTH STATE LISTENER
+//  AUTH STATE
 // ============================================================
-auth.onAuthStateChanged(async user=>{
+auth.onAuthStateChanged(async u=>{
     document.getElementById('splash-screen').classList.add('hidden');
-    if(!user){
-        showScreen('auth-screen');
-        return;
-    }
-    if(!user.emailVerified){
-        document.getElementById('verify-email-display').textContent=user.email;
-        showScreen('verify-screen');
-        return;
-    }
-    // Check if profile exists
-    try{
-        const doc=await db.collection('users').doc(user.uid).get();
-        if(doc.exists && doc.data().abteilung){
-            userProfile={uid:user.uid,email:user.email,...doc.data()};
-            showScreen('app');
-            initApp();
-        } else {
-            showScreen('setup-screen');
-        }
-    }catch(e){
-        console.error(e);
-        showScreen('setup-screen');
-    }
+    if(!u){show('auth-screen');return}
+    if(!u.emailVerified){document.getElementById('verify-email').textContent=u.email;show('verify-screen');return}
+    UP={uid:u.uid,name:u.displayName||'Nutzer',email:u.email};
+    show('app');
+    initApp();
 });
 
 // ============================================================
-//  REGISTER
+//  REGISTER — Only Name + Email + Password
 // ============================================================
 document.getElementById('register-form').addEventListener('submit',async e=>{
-    e.preventDefault();
-    clearAuthMessages();
+    e.preventDefault();clearMsg();
     const name=document.getElementById('reg-name').value.trim();
     const email=document.getElementById('reg-email').value.trim();
-    const pw=document.getElementById('reg-password').value;
-    const pw2=document.getElementById('reg-password2').value;
-    const abt=document.getElementById('reg-abteilung').value;
-    const tel=document.getElementById('reg-telefon').value.trim();
-    const ort=document.getElementById('reg-wohnort').value.trim();
-
-    if(pw!==pw2){showAuthError('Passwörter stimmen nicht überein');return;}
-    if(pw.length<6){showAuthError('Passwort muss mindestens 6 Zeichen haben');return;}
-
-    const btn=document.getElementById('reg-submit');
+    const pw=document.getElementById('reg-pw').value;
+    const pw2=document.getElementById('reg-pw2').value;
+    if(pw!==pw2){authMsg('Passwörter stimmen nicht überein','error');return}
+    const btn=document.getElementById('reg-btn');
     btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Wird erstellt...';
-
     try{
         const cred=await auth.createUserWithEmailAndPassword(email,pw);
         await cred.user.updateProfile({displayName:name});
         await db.collection('users').doc(cred.user.uid).set({
-            name,email,abteilung:abt,telefon:tel,wohnort:ort,
+            name:name,
+            email:email,
             createdAt:new Date().toISOString()
         });
         await cred.user.sendEmailVerification();
-        document.getElementById('verify-email-display').textContent=email;
-        showScreen('verify-screen');
-    }catch(e){
-        showAuthError(firebaseErrorMsg(e.code));
-    }
-    btn.disabled=false;btn.innerHTML='<i class="fas fa-user-plus"></i> Registrieren';
+        document.getElementById('verify-email').textContent=email;
+        show('verify-screen');
+    }catch(er){authMsg(errMsg(er.code),'error')}
+    btn.disabled=false;btn.innerHTML='<i class="fas fa-user-plus"></i> Konto erstellen';
 });
 
 // ============================================================
 //  LOGIN
 // ============================================================
 document.getElementById('login-form').addEventListener('submit',async e=>{
-    e.preventDefault();
-    clearAuthMessages();
-    const email=document.getElementById('login-email').value.trim();
-    const pw=document.getElementById('login-password').value;
-    const btn=document.getElementById('login-submit');
-    btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Wird angemeldet...';
-
-    try{
-        await auth.signInWithEmailAndPassword(email,pw);
-        // onAuthStateChanged handles the rest
-    }catch(e){
-        showAuthError(firebaseErrorMsg(e.code));
-    }
+    e.preventDefault();clearMsg();
+    const email=document.getElementById('log-email').value.trim();
+    const pw=document.getElementById('log-pw').value;
+    const btn=document.getElementById('log-btn');
+    btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Anmelden...';
+    try{await auth.signInWithEmailAndPassword(email,pw)}
+    catch(er){authMsg(errMsg(er.code),'error')}
     btn.disabled=false;btn.innerHTML='<i class="fas fa-sign-in-alt"></i> Anmelden';
 });
 
 // ============================================================
 //  VERIFY
 // ============================================================
-document.getElementById('verify-check-btn').addEventListener('click',async()=>{
-    const btn=document.getElementById('verify-check-btn');
+document.getElementById('verify-done-btn').addEventListener('click',async()=>{
+    const btn=document.getElementById('verify-done-btn');
     btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Prüfe...';
     try{
         await auth.currentUser.reload();
         if(auth.currentUser.emailVerified){
-            const doc=await db.collection('users').doc(auth.currentUser.uid).get();
-            if(doc.exists && doc.data().abteilung){
-                userProfile={uid:auth.currentUser.uid,email:auth.currentUser.email,...doc.data()};
-                showScreen('app');initApp();
-            } else {
-                showScreen('setup-screen');
-            }
-        } else {
-            toast('E-Mail noch nicht bestätigt. Prüfe deinen Posteingang!','error');
-        }
-    }catch(e){toast('Fehler: '+e.message,'error');}
-    btn.disabled=false;btn.innerHTML='<i class="fas fa-sync-alt"></i> Ich habe bestätigt';
+            UP={uid:auth.currentUser.uid,name:auth.currentUser.displayName||'Nutzer',email:auth.currentUser.email};
+            show('app');initApp();
+            toast('E-Mail bestätigt! Willkommen! 🎉','success');
+        }else{toast('Noch nicht bestätigt. Prüfe dein Postfach!','error')}
+    }catch(er){toast('Fehler: '+er.message,'error')}
+    btn.disabled=false;btn.innerHTML='<i class="fas fa-check-circle"></i> Ich habe bestätigt';
 });
-
 document.getElementById('verify-resend-btn').addEventListener('click',async()=>{
-    try{
-        await auth.currentUser.sendEmailVerification();
-        toast('Bestätigungs-E-Mail erneut gesendet! 📧','success');
-    }catch(e){toast('Bitte warte einen Moment','error');}
+    try{await auth.currentUser.sendEmailVerification();toast('E-Mail erneut gesendet! 📧','success')}
+    catch(e){toast('Bitte warte einen Moment','error')}
 });
-
-document.getElementById('verify-logout-btn').addEventListener('click',()=>{
-    auth.signOut();
-});
+document.getElementById('verify-back-btn').addEventListener('click',()=>auth.signOut());
 
 // ============================================================
-//  PROFILE SETUP (for users who registered but profile incomplete)
+//  FORGOT PW
 // ============================================================
-document.getElementById('setup-form').addEventListener('submit',async e=>{
-    e.preventDefault();
-    const user=auth.currentUser;
-    if(!user)return;
-    const abt=document.getElementById('setup-abteilung').value;
-    const tel=document.getElementById('setup-telefon').value.trim();
-    const ort=document.getElementById('setup-wohnort').value.trim();
-    try{
-        await db.collection('users').doc(user.uid).set({
-            name:user.displayName||'Unbekannt',email:user.email,
-            abteilung:abt,telefon:tel,wohnort:ort,
-            createdAt:new Date().toISOString()
-        },{merge:true});
-        const doc=await db.collection('users').doc(user.uid).get();
-        userProfile={uid:user.uid,email:user.email,...doc.data()};
-        showScreen('app');initApp();
-        toast('Willkommen bei WilkinsonRide! 🚗','success');
-    }catch(e){toast('Fehler: '+e.message,'error');}
-});
-
-// ============================================================
-//  FORGOT PASSWORD
-// ============================================================
-document.getElementById('forgot-pw-link').addEventListener('click',async e=>{
-    e.preventDefault();
-    const email=document.getElementById('login-email').value.trim();
-    if(!email){showAuthError('Bitte E-Mail Adresse oben eingeben');return;}
-    try{
-        await auth.sendPasswordResetEmail(email);
-        showAuthSuccess('Passwort-Reset E-Mail an '+email+' gesendet!');
-    }catch(e){showAuthError(firebaseErrorMsg(e.code));}
+document.getElementById('forgot-link').addEventListener('click',async e=>{
+    e.preventDefault();clearMsg();
+    const email=document.getElementById('log-email').value.trim();
+    if(!email){authMsg('Bitte E-Mail oben eingeben','error');return}
+    try{await auth.sendPasswordResetEmail(email);authMsg('Reset-Link an '+email+' gesendet!','success')}
+    catch(er){authMsg(errMsg(er.code),'error')}
 });
 
 // ============================================================
 //  AUTH TABS
 // ============================================================
-document.getElementById('tab-register-btn').addEventListener('click',()=>{
-    document.getElementById('tab-register-btn').classList.add('active');
-    document.getElementById('tab-login-btn').classList.remove('active');
+document.getElementById('tab-reg-btn').addEventListener('click',()=>{
+    document.getElementById('tab-reg-btn').classList.add('active');
+    document.getElementById('tab-log-btn').classList.remove('active');
     document.getElementById('register-form').style.display='';
-    document.getElementById('login-form').style.display='none';
-    clearAuthMessages();
+    document.getElementById('login-form').style.display='none';clearMsg();
 });
-document.getElementById('tab-login-btn').addEventListener('click',()=>{
-    document.getElementById('tab-login-btn').classList.add('active');
-    document.getElementById('tab-register-btn').classList.remove('active');
+document.getElementById('tab-log-btn').addEventListener('click',()=>{
+    document.getElementById('tab-log-btn').classList.add('active');
+    document.getElementById('tab-reg-btn').classList.remove('active');
     document.getElementById('login-form').style.display='';
-    document.getElementById('register-form').style.display='none';
-    clearAuthMessages();
+    document.getElementById('register-form').style.display='none';clearMsg();
 });
 
 // ============================================================
-//  AUTH HELPERS
-// ============================================================
-function showAuthError(msg){
-    const el=document.getElementById('auth-error');
-    document.getElementById('auth-error-text').textContent=msg;
-    el.classList.add('show');
-}
-function showAuthSuccess(msg){
-    const el=document.getElementById('auth-success');
-    document.getElementById('auth-success-text').textContent=msg;
-    el.classList.add('show');
-}
-function clearAuthMessages(){
-    document.getElementById('auth-error').classList.remove('show');
-    document.getElementById('auth-success').classList.remove('show');
-}
-function togglePw(id,btn){
-    const i=document.getElementById(id);
-    const isP=i.type==='password';
-    i.type=isP?'text':'password';
-    btn.innerHTML=isP?'<i class="fas fa-eye-slash"></i>':'<i class="fas fa-eye"></i>';
-}
-function firebaseErrorMsg(code){
-    const msgs={
-        'auth/email-already-in-use':'Diese E-Mail ist bereits registriert. Bitte anmelden.',
-        'auth/invalid-email':'Ungültige E-Mail Adresse.',
-        'auth/weak-password':'Passwort muss mindestens 6 Zeichen haben.',
-        'auth/user-not-found':'Kein Konto mit dieser E-Mail gefunden.',
-        'auth/wrong-password':'Falsches Passwort.',
-        'auth/invalid-credential':'E-Mail oder Passwort falsch.',
-        'auth/too-many-requests':'Zu viele Versuche. Bitte warte einen Moment.',
-        'auth/network-request-failed':'Keine Internetverbindung.'
-    };
-    return msgs[code]||'Fehler: '+code;
-}
-
-// ============================================================
-//  MAIN APP
+//  MAIN APP INIT
 // ============================================================
 function initApp(){
-    if(!userProfile)return;
-    document.getElementById('user-display-name').textContent=userProfile.name.split(' ')[0];
-    document.getElementById('filter-date').value=currentDate;
-    document.getElementById('filter-date').min=getToday();
-    document.getElementById('offer-date').value=getToday();
-    document.getElementById('offer-date').min=getToday();
-    listenToRides();
+    if(!UP)return;
+    document.getElementById('display-name').textContent=UP.name.split(' ')[0];
+    document.getElementById('user-badge').textContent=UP.name.split(' ')[0];
+    document.getElementById('filter-date').value=cDate;
+    document.getElementById('filter-date').min=td();
+    document.getElementById('o-date').value=td();
+    document.getElementById('o-date').min=td();
+    listenRides();
     countUsers();
 }
 
-function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
-function cleanPhone(p){if(!p)return'';return p.replace(/[^0-9]/g,'').replace(/^0/,'49')}
-function showModal(id){document.getElementById(id).style.display='flex'}
-function hideModal(id){document.getElementById(id).style.display='none'}
-function toast(msg,type=''){
-    const t=document.getElementById('toast');
-    t.textContent=msg;t.className='toast show '+type;
-    clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3500);
-}
-
 // ============================================================
-//  RIDES
+//  RIDES - FIRESTORE REALTIME
 // ============================================================
-function listenToRides(){
-    if(unsubRides)unsubRides();
-    unsubRides=db.collection('rides').orderBy('createdAt','desc')
-        .onSnapshot(snap=>{
-            allRides=[];snap.forEach(d=>allRides.push({id:d.id,...d.data()}));
-            renderRides();updateStats();
-        },err=>{console.error(err);document.getElementById('connection-bar').classList.add('show');});
+function listenRides(){
+    if(unsubR)unsubR();
+    unsubR=db.collection('rides').orderBy('createdAt','desc').onSnapshot(snap=>{
+        allR=[];snap.forEach(d=>allR.push({id:d.id,...d.data()}));
+        renderRides();updateStats();
+    },err=>{console.error(err);document.getElementById('connection-bar').classList.add('show')});
 }
-
 async function countUsers(){
-    try{const s=await db.collection('users').get();totalUsers=s.size;
-    document.getElementById('stat-users').textContent=totalUsers;
-    document.getElementById('online-count').textContent=totalUsers+' 👥';}catch(e){}
+    try{const s=await db.collection('users').get();nUsers=s.size;
+    document.getElementById('s-users').textContent=nUsers}catch(e){}
 }
-
-function getFiltered(){
-    const t=new Date();t.setHours(0,0,0,0);
-    return allRides.filter(r=>r.shift===currentShift&&r.date===currentDate&&new Date(r.date)>=t);
-}
+function getF(){const t=new Date();t.setHours(0,0,0,0);return allR.filter(r=>r.shift===cShift&&r.date===cDate&&new Date(r.date)>=t)}
 
 function renderRides(){
-    const rides=getFiltered();const c=document.getElementById('rides-list');
+    const rides=getF(),c=document.getElementById('rides-list');
     document.getElementById('rides-count').textContent=rides.length;
-    if(!rides.length){c.innerHTML='<div class="empty-state"><i class="fas fa-car"></i><p>Keine Fahrten für '+SHIFT_SHORT[currentShift]+'.</p><small>Biete selbst eine an!</small></div>';return;}
-    c.innerHTML=rides.map(r=>rideCardHTML(r)).join('');
-    c.querySelectorAll('.ride-card').forEach(card=>card.addEventListener('click',()=>showDetail(card.dataset.rideId)));
+    if(!rides.length){c.innerHTML='<div class="empty-state"><i class="fas fa-car"></i><p>Keine Fahrten für '+SS[cShift]+'.</p><small>Biete selbst eine an!</small></div>';return}
+    c.innerHTML=rides.map(r=>rc(r)).join('');
+    c.querySelectorAll('.ride-card').forEach(card=>card.addEventListener('click',()=>showDet(card.dataset.id)));
 }
 
-function rideCardHTML(r){
+function rc(r){
     const av=r.seats-(r.passengers||[]).length,tk=(r.passengers||[]).length;
-    const own=userProfile&&r.driverId===userProfile.uid;
-    const bk=userProfile&&(r.passengers||[]).find(p=>p.userId===userProfile.uid);
+    const own=UP&&r.driverId===UP.uid;
+    const bk=UP&&(r.passengers||[]).find(p=>p.userId===UP.uid);
     let dots='';for(let i=0;i<r.seats;i++)dots+=`<div class="seat-dot ${i<tk?'taken':''}"></div>`;
     let st='';
     if(own)st='<br><span style="color:var(--accent);font-size:11px;font-weight:600">DEINE FAHRT</span>';
     else if(bk)st='<br><span style="color:var(--success);font-size:11px;font-weight:600">✓ GEBUCHT</span>';
     const fd=new Date(r.date+'T00:00:00').toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'});
-    return`<div class="ride-card ${own?'my-ride':''}" data-ride-id="${r.id}"><div class="ride-card-header"><div><div class="ride-card-driver">${esc(r.driverName)}</div><div class="ride-card-dept">${esc(r.driverAbteilung)}</div></div><div style="text-align:right"><span class="ride-card-shift-badge ${r.shift}">${SHIFT_SHORT[r.shift]}</span>${st}</div></div><div class="ride-card-details"><div class="ride-card-detail"><i class="fas fa-map-marker-alt"></i><span>${esc(r.startOrt)}</span></div><div class="ride-card-detail"><i class="fas fa-clock"></i><span>${esc(r.abfahrtszeit)} Uhr · ${fd}</span></div>${r.route?`<div class="ride-card-detail"><i class="fas fa-road"></i><span>${esc(r.route)}</span></div>`:''}</div><div class="ride-card-footer"><div class="seats-info ${av>0?'available':'full'}"><div class="seats-dots">${dots}</div><span>${av>0?av+' frei':'Voll'}</span></div>${r.returnTrip?'<span style="font-size:11px;color:var(--text-muted)"><i class="fas fa-exchange-alt"></i> +Rück</span>':''}</div></div>`;
+    return`<div class="ride-card ${own?'my-ride':''}" data-id="${r.id}"><div class="ride-card-header"><div><div class="ride-card-driver">${esc(r.driverName)}</div>${r.driverPhone?`<div class="ride-card-dept"><i class="fas fa-phone" style="font-size:10px"></i> ${esc(r.driverPhone)}</div>`:''}</div><div style="text-align:right"><span class="ride-card-shift-badge ${r.shift}">${SS[r.shift]}</span>${st}</div></div><div class="ride-card-details"><div class="ride-card-detail"><i class="fas fa-map-marker-alt"></i><span>${esc(r.startOrt)}</span></div><div class="ride-card-detail"><i class="fas fa-clock"></i><span>${esc(r.abfahrtszeit)} Uhr · ${fd}</span></div>${r.route?`<div class="ride-card-detail"><i class="fas fa-road"></i><span>${esc(r.route)}</span></div>`:''}</div><div class="ride-card-footer"><div class="seats-info ${av>0?'available':'full'}"><div class="seats-dots">${dots}</div><span>${av>0?av+' frei':'Voll'}</span></div>${r.returnTrip?'<span style="font-size:11px;color:var(--text-muted)"><i class="fas fa-exchange-alt"></i> +Rück</span>':''}</div></div>`;
 }
 
-function showDetail(rid){
-    const r=allRides.find(x=>x.id===rid);if(!r)return;
+function showDet(rid){
+    const r=allR.find(x=>x.id===rid);if(!r)return;
     const av=r.seats-(r.passengers||[]).length;
-    const own=userProfile&&r.driverId===userProfile.uid;
-    const bk=userProfile&&(r.passengers||[]).find(p=>p.userId===userProfile.uid);
+    const own=UP&&r.driverId===UP.uid;
+    const bk=UP&&(r.passengers||[]).find(p=>p.userId===UP.uid);
     const fd=new Date(r.date+'T00:00:00').toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
     let pass=(r.passengers&&r.passengers.length)?r.passengers.map(p=>`<div class="passenger-item"><div class="passenger-avatar">${p.name.split(' ').map(n=>n[0]).join('').toUpperCase()}</div><span>${esc(p.name)}</span></div>`).join(''):'<p style="color:var(--text-muted);font-size:13px">Noch keine Mitfahrer</p>';
     let act='';
     if(own)act=`<div class="ride-actions"><button class="btn btn-danger" id="btn-del"><i class="fas fa-trash"></i> Löschen</button></div>`;
-    else if(bk)act=`<div class="ride-actions"><button class="btn btn-outline btn-sm" onclick="window.open('https://wa.me/${cleanPhone(r.driverTelefon)}','_blank')"><i class="fab fa-whatsapp"></i> WhatsApp</button><button class="btn btn-danger btn-sm" id="btn-cancel"><i class="fas fa-times"></i> Stornieren</button></div>`;
-    else if(av>0)act=`<div class="ride-actions"><button class="btn btn-primary" id="btn-book"><i class="fas fa-check"></i> Buchen</button><button class="btn btn-outline btn-sm" onclick="window.location.href='tel:${esc(r.driverTelefon)}'"><i class="fas fa-phone"></i></button></div>`;
-    else act='<p style="color:var(--danger);font-weight:600;text-align:center;margin-top:16px"><i class="fas fa-ban"></i> Voll belegt</p>';
+    else if(bk)act=`<div class="ride-actions">${r.driverPhone?`<button class="btn btn-success btn-sm" onclick="window.open('https://wa.me/${cleanPh(r.driverPhone)}','_blank')"><i class="fab fa-whatsapp"></i></button>`:''}<button class="btn btn-danger btn-sm" id="btn-cancel"><i class="fas fa-times"></i> Stornieren</button></div>`;
+    else if(av>0)act=`<div class="ride-actions"><button class="btn btn-primary" id="btn-book"><i class="fas fa-check"></i> Platz buchen</button>${r.driverPhone?`<button class="btn btn-outline btn-sm" onclick="window.location.href='tel:${esc(r.driverPhone)}'"><i class="fas fa-phone"></i></button>`:''}</div>`;
+    else act='<p style="color:var(--danger);font-weight:600;text-align:center;margin-top:16px"><i class="fas fa-ban"></i> Alle Plätze belegt</p>';
 
-    document.getElementById('ride-detail-body').innerHTML=`<div class="ride-detail-section"><h4>Fahrer</h4><div class="detail-row"><i class="fas fa-user"></i><strong>${esc(r.driverName)}</strong></div><div class="detail-row"><i class="fas fa-building"></i>${esc(r.driverAbteilung)}</div><div class="detail-row"><i class="fas fa-phone"></i><a href="tel:${esc(r.driverTelefon)}" style="color:var(--primary)">${esc(r.driverTelefon)}</a></div></div><div class="ride-detail-section"><h4>Fahrt</h4><div class="detail-row"><i class="fas fa-clock"></i>${SHIFT_LABELS[r.shift]}</div><div class="detail-row"><i class="fas fa-calendar"></i>${fd}</div><div class="detail-row"><i class="fas fa-map-marker-alt"></i>Start: <strong>${esc(r.startOrt)}</strong></div><div class="detail-row"><i class="fas fa-clock"></i>Abfahrt: <strong>${esc(r.abfahrtszeit)} Uhr</strong></div><div class="detail-row"><i class="fas fa-flag-checkered"></i>Ziel: <strong>Wilkinson Sword</strong></div>${r.route?`<div class="detail-row"><i class="fas fa-road"></i>${esc(r.route)}</div>`:''}${r.notes?`<div class="detail-row"><i class="fas fa-comment"></i>${esc(r.notes)}</div>`:''}<div class="detail-row"><i class="fas fa-chair"></i>${av} von ${r.seats} frei</div>${r.returnTrip?'<div class="detail-row"><i class="fas fa-exchange-alt"></i>Rückfahrt ✅</div>':''}</div><div class="ride-detail-section"><h4>Mitfahrer (${(r.passengers||[]).length}/${r.seats})</h4><div class="passengers-list">${pass}</div></div>${act}`;
+    document.getElementById('detail-body').innerHTML=`
+        <div class="ride-detail-section"><h4>Fahrer</h4>
+            <div class="detail-row"><i class="fas fa-user"></i><strong>${esc(r.driverName)}</strong></div>
+            <div class="detail-row"><i class="fas fa-envelope"></i>${esc(r.driverEmail)}</div>
+            ${r.driverPhone?`<div class="detail-row"><i class="fas fa-phone"></i><a href="tel:${esc(r.driverPhone)}" style="color:var(--primary)">${esc(r.driverPhone)}</a></div>`:''}
+        </div>
+        <div class="ride-detail-section"><h4>Fahrt</h4>
+            <div class="detail-row"><i class="fas fa-clock"></i>${SL[r.shift]}</div>
+            <div class="detail-row"><i class="fas fa-calendar"></i>${fd}</div>
+            <div class="detail-row"><i class="fas fa-map-marker-alt"></i>Start: <strong>${esc(r.startOrt)}</strong></div>
+            <div class="detail-row"><i class="fas fa-clock"></i>Abfahrt: <strong>${esc(r.abfahrtszeit)} Uhr</strong></div>
+            <div class="detail-row"><i class="fas fa-flag-checkered"></i>Ziel: <strong>Wilkinson Sword, Solingen</strong></div>
+            ${r.route?`<div class="detail-row"><i class="fas fa-road"></i>${esc(r.route)}</div>`:''}
+            ${r.notes?`<div class="detail-row"><i class="fas fa-comment"></i>${esc(r.notes)}</div>`:''}
+            <div class="detail-row"><i class="fas fa-chair"></i>${av} von ${r.seats} Plätzen frei</div>
+            ${r.returnTrip?'<div class="detail-row"><i class="fas fa-exchange-alt"></i>Rückfahrt ✅</div>':''}
+            ${r.recurring?'<div class="detail-row"><i class="fas fa-redo"></i>Wöchentlich 🔄</div>':''}
+        </div>
+        <div class="ride-detail-section"><h4>Mitfahrer (${(r.passengers||[]).length}/${r.seats})</h4>
+            <div class="passengers-list">${pass}</div>
+        </div>${act}`;
 
-    showModal('ride-detail-modal');
+    showM('detail-modal');
 
     const bb=document.getElementById('btn-book');
     if(bb)bb.onclick=async()=>{bb.disabled=true;bb.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
-        try{const p=[...(r.passengers||[]),{userId:userProfile.uid,name:userProfile.name,telefon:userProfile.telefon,bookedAt:new Date().toISOString()}];
-        if(p.length-1>=(r.passengers||[]).length&&r.driverId!==userProfile.uid&&!(r.passengers||[]).find(x=>x.userId===userProfile.uid)){
-            await db.collection('rides').doc(r.id).update({passengers:p});toast('Gebucht! ✅','success');hideModal('ride-detail-modal');
-        }else{toast('Nicht möglich','error');}}catch(e){toast('Fehler','error');}
-        bb.disabled=false;bb.innerHTML='<i class="fas fa-check"></i> Buchen';};
+        try{
+            if(r.driverId===UP.uid){toast('Eigene Fahrt!','error');bb.disabled=false;return}
+            if((r.passengers||[]).find(x=>x.userId===UP.uid)){toast('Bereits gebucht','error');bb.disabled=false;return}
+            if((r.passengers||[]).length>=r.seats){toast('Voll belegt','error');bb.disabled=false;return}
+            const p=[...(r.passengers||[]),{userId:UP.uid,name:UP.name,email:UP.email,bookedAt:new Date().toISOString()}];
+            await db.collection('rides').doc(r.id).update({passengers:p});
+            toast('Platz gebucht! ✅','success');hideM('detail-modal');
+        }catch(e){toast('Fehler','error')}
+        bb.disabled=false;bb.innerHTML='<i class="fas fa-check"></i> Buchen';
+    };
 
     const bc=document.getElementById('btn-cancel');
-    if(bc)bc.onclick=async()=>{if(confirm('Stornieren?')){
-        const p=(r.passengers||[]).filter(x=>x.userId!==userProfile.uid);
+    if(bc)bc.onclick=async()=>{if(confirm('Buchung stornieren?')){
+        try{const p=(r.passengers||[]).filter(x=>x.userId!==UP.uid);
         await db.collection('rides').doc(r.id).update({passengers:p});
-        toast('Storniert');hideModal('ride-detail-modal');}};
+        toast('Storniert');hideM('detail-modal')}catch(e){toast('Fehler','error')}}};
 
     const bd=document.getElementById('btn-del');
     if(bd)bd.onclick=async()=>{if(confirm('Fahrt löschen?')){
-        await db.collection('rides').doc(r.id).delete();
-        toast('Gelöscht');hideModal('ride-detail-modal');}};
+        try{await db.collection('rides').doc(r.id).delete();
+        toast('Gelöscht');hideM('detail-modal')}catch(e){toast('Fehler','error')}}};
 }
 
-function renderMyRides(type){
-    const c=document.getElementById('my-rides-list');
-    if(!userProfile)return;
-    let rides=type==='offered'?allRides.filter(r=>r.driverId===userProfile.uid):allRides.filter(r=>(r.passengers||[]).find(p=>p.userId===userProfile.uid));
+function renderMy(type){
+    const c=document.getElementById('my-rides-list');if(!UP)return;
+    let rides=type==='offered'?allR.filter(r=>r.driverId===UP.uid):allR.filter(r=>(r.passengers||[]).find(p=>p.userId===UP.uid));
     rides.sort((a,b)=>a.date>b.date?-1:1);
-    if(!rides.length){c.innerHTML=`<div class="empty-state"><i class="fas fa-inbox"></i><p>${type==='offered'?'Keine angebotenen Fahrten.':'Keine gebuchten Fahrten.'}</p></div>`;return;}
-    c.innerHTML=rides.map(r=>rideCardHTML(r)).join('');
-    c.querySelectorAll('.ride-card').forEach(card=>card.addEventListener('click',()=>showDetail(card.dataset.rideId)));
+    if(!rides.length){c.innerHTML=`<div class="empty-state"><i class="fas fa-inbox"></i><p>${type==='offered'?'Keine angebotenen Fahrten.':'Keine gebuchten Fahrten.'}</p></div>`;return}
+    c.innerHTML=rides.map(r=>rc(r)).join('');
+    c.querySelectorAll('.ride-card').forEach(card=>card.addEventListener('click',()=>showDet(card.dataset.id)));
 }
 
 function updateStats(){
-    const tr=allRides.filter(r=>r.date===getToday());
-    document.getElementById('stat-rides').textContent=tr.length;
-    document.getElementById('stat-seats').textContent=tr.reduce((s,r)=>s+r.seats-(r.passengers||[]).length,0);
+    const tr=allR.filter(r=>r.date===td());
+    document.getElementById('s-rides').textContent=tr.length;
+    document.getElementById('s-seats').textContent=tr.reduce((s,r)=>s+r.seats-(r.passengers||[]).length,0);
+    document.getElementById('s-users').textContent=nUsers;
 }
 
 // ============================================================
-//  EVENT BINDINGS
+//  EVENTS
 // ============================================================
 // Nav
 document.querySelectorAll('.nav-item').forEach(b=>b.addEventListener('click',()=>{
-    const tab=b.dataset.tab;
-    document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.tab===tab));
-    document.querySelectorAll('.tab-content').forEach(s=>s.classList.toggle('active',s.id==='tab-'+tab));
-    if(tab==='myrides')renderMyRides('offered');
+    const t=b.dataset.tab;
+    document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.tab===t));
+    document.querySelectorAll('.tab-content').forEach(s=>s.classList.toggle('active',s.id==='tab-'+t));
+    if(t==='myrides')renderMy('offered');
 }));
-
 // Shift
 document.querySelectorAll('.shift-btn').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('.shift-btn').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');currentShift=b.dataset.shift;renderRides();
+    b.classList.add('active');cShift=b.dataset.shift;renderRides();
 }));
-
 // Date
-document.getElementById('filter-date').addEventListener('change',e=>{currentDate=e.target.value;renderRides();});
-
+document.getElementById('filter-date').addEventListener('change',e=>{cDate=e.target.value;renderRides()});
 // Seats
-document.getElementById('seats-minus').addEventListener('click',()=>{let c=parseInt(document.getElementById('offer-seats').value);if(c>1){c--;document.getElementById('offer-seats').value=c;document.getElementById('seats-count').textContent=c;}});
-document.getElementById('seats-plus').addEventListener('click',()=>{let c=parseInt(document.getElementById('offer-seats').value);if(c<7){c++;document.getElementById('offer-seats').value=c;document.getElementById('seats-count').textContent=c;}});
+document.getElementById('seat-m').addEventListener('click',()=>{let c=parseInt(document.getElementById('o-seats').value);if(c>1){c--;document.getElementById('o-seats').value=c;document.getElementById('seat-d').textContent=c}});
+document.getElementById('seat-p').addEventListener('click',()=>{let c=parseInt(document.getElementById('o-seats').value);if(c<7){c++;document.getElementById('o-seats').value=c;document.getElementById('seat-d').textContent=c}});
 
 // Offer
 document.getElementById('offer-form').addEventListener('submit',async e=>{
-    e.preventDefault();const btn=document.getElementById('offer-submit-btn');
+    e.preventDefault();
+    const btn=document.getElementById('o-submit');
     btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Speichern...';
-    try{await db.collection('rides').add({
-        driverId:userProfile.uid,driverName:userProfile.name,driverAbteilung:userProfile.abteilung,driverTelefon:userProfile.telefon,
-        shift:document.querySelector('input[name="offer-shift"]:checked').value,
-        date:document.getElementById('offer-date').value,
-        startOrt:document.getElementById('offer-start').value.trim(),
-        abfahrtszeit:document.getElementById('offer-time').value,
-        seats:parseInt(document.getElementById('offer-seats').value),
-        route:document.getElementById('offer-route').value.trim(),
-        notes:document.getElementById('offer-notes').value.trim(),
-        returnTrip:document.getElementById('offer-return').checked,
-        recurring:document.getElementById('offer-recurring').checked,
-        passengers:[],createdAt:new Date().toISOString()
-    });toast('Fahrt veröffentlicht! 🚗','success');
-    e.target.reset();document.getElementById('offer-seats').value=3;document.getElementById('seats-count').textContent='3';
-    document.getElementById('offer-date').value=getToday();document.getElementById('offer-return').checked=true;
-    document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.tab==='home'));
-    document.querySelectorAll('.tab-content').forEach(s=>s.classList.toggle('active',s.id==='tab-home'));
-    }catch(e){toast('Fehler: '+e.message,'error');}
+    try{
+        await db.collection('rides').add({
+            driverId:UP.uid,
+            driverName:UP.name,
+            driverEmail:UP.email,
+            driverPhone:document.getElementById('o-phone').value.trim(),
+            shift:document.querySelector('input[name="o-shift"]:checked').value,
+            date:document.getElementById('o-date').value,
+            startOrt:document.getElementById('o-start').value.trim(),
+            abfahrtszeit:document.getElementById('o-time').value,
+            seats:parseInt(document.getElementById('o-seats').value),
+            route:document.getElementById('o-route').value.trim(),
+            notes:document.getElementById('o-notes').value.trim(),
+            returnTrip:document.getElementById('o-return').checked,
+            recurring:document.getElementById('o-recur').checked,
+            passengers:[],
+            createdAt:new Date().toISOString()
+        });
+        toast('Fahrt veröffentlicht! 🚗','success');
+        e.target.reset();
+        document.getElementById('o-seats').value=3;document.getElementById('seat-d').textContent='3';
+        document.getElementById('o-date').value=td();document.getElementById('o-return').checked=true;
+        document.querySelector('input[name="o-shift"][value="frueh"]').checked=true;
+        // Go home
+        document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.tab==='home'));
+        document.querySelectorAll('.tab-content').forEach(s=>s.classList.toggle('active',s.id==='tab-home'));
+    }catch(er){toast('Fehler: '+er.message,'error')}
     btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i> Fahrt veröffentlichen';
 });
 
 // My rides tabs
 document.querySelectorAll('.my-rides-tab').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('.my-rides-tab').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');renderMyRides(b.dataset.type);
+    b.classList.add('active');renderMy(b.dataset.type);
 }));
 
 // Profile
 document.getElementById('btn-profile').addEventListener('click',()=>{
-    if(!userProfile)return;
-    const o=allRides.filter(r=>r.driverId===userProfile.uid).length;
-    const b=allRides.filter(r=>(r.passengers||[]).find(p=>p.userId===userProfile.uid)).length;
+    if(!UP)return;
+    const o=allR.filter(r=>r.driverId===UP.uid).length;
+    const b=allR.filter(r=>(r.passengers||[]).find(p=>p.userId===UP.uid)).length;
     document.getElementById('profile-info').innerHTML=`
-        <div class="profile-info-item"><i class="fas fa-user"></i><span>${esc(userProfile.name)}</span></div>
-        <div class="profile-info-item"><i class="fas fa-envelope"></i><span>${esc(userProfile.email)} <span class="verified-badge">✓ Verifiziert</span></span></div>
-        <div class="profile-info-item"><i class="fas fa-building"></i><span>${esc(userProfile.abteilung)}</span></div>
-        <div class="profile-info-item"><i class="fas fa-phone"></i><span>${esc(userProfile.telefon)}</span></div>
-        <div class="profile-info-item"><i class="fas fa-map-marker-alt"></i><span>${esc(userProfile.wohnort)}</span></div>
+        <div class="profile-info-item"><i class="fas fa-user"></i><span>${esc(UP.name)}</span></div>
+        <div class="profile-info-item"><i class="fas fa-envelope"></i><span>${esc(UP.email)}<span class="verified-badge">✓ Verifiziert</span></span></div>
         <div class="profile-info-item"><i class="fas fa-car"></i><span>${o} angeboten · ${b} gebucht</span></div>`;
-    showModal('profile-modal');
+    showM('profile-modal');
 });
 
-document.getElementById('close-profile').addEventListener('click',()=>hideModal('profile-modal'));
-document.querySelector('#profile-modal .modal-overlay').addEventListener('click',()=>hideModal('profile-modal'));
-document.getElementById('close-detail').addEventListener('click',()=>hideModal('ride-detail-modal'));
-document.querySelector('#ride-detail-modal .modal-overlay').addEventListener('click',()=>hideModal('ride-detail-modal'));
+// Modals close
+document.getElementById('close-profile').addEventListener('click',()=>hideM('profile-modal'));
+document.querySelector('#profile-modal .modal-overlay').addEventListener('click',()=>hideM('profile-modal'));
+document.getElementById('close-detail').addEventListener('click',()=>hideM('detail-modal'));
+document.querySelector('#detail-modal .modal-overlay').addEventListener('click',()=>hideM('detail-modal'));
 
+// Logout
 document.getElementById('btn-logout').addEventListener('click',async()=>{
-    if(confirm('Abmelden?')){
-        if(unsubRides)unsubRides();
-        await auth.signOut();
-        userProfile=null;allRides=[];
-        hideModal('profile-modal');
-    }
+    if(confirm('Abmelden?')){if(unsubR)unsubR();await auth.signOut();UP=null;allR=[];hideM('profile-modal')}
 });
 
-window.addEventListener('online',()=>{document.getElementById('connection-bar').classList.remove('show');});
-window.addEventListener('offline',()=>{document.getElementById('connection-bar').classList.add('show');});
+// Online/offline
+window.addEventListener('online',()=>document.getElementById('connection-bar').classList.remove('show'));
+window.addEventListener('offline',()=>document.getElementById('connection-bar').classList.add('show'));
 </script>
 </body>
 </html>
