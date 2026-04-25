@@ -604,21 +604,30 @@ async function countUsers(){
     document.getElementById('s-users').textContent=nUsers}catch(e){}
 }
 function getF(){
-    console.log('Filter:', cShift, cDate, 'Total rides:', allR.length);
-    allR.forEach(r => console.log('Ride:', r.driverName, r.shift, r.date));
     const t=new Date();t.setHours(0,0,0,0);
     return allR.filter(r=>{
         const matchShift = r.shift === cShift;
         const matchDate = r.date === cDate;
         const notPast = new Date(r.date+'T23:59:59') >= t;
-        console.log('Check:', r.driverName, 'shift:', r.shift, '=', cShift, matchShift, 'date:', r.date, '=', cDate, matchDate, 'notPast:', notPast);
         return matchShift && matchDate && notPast;
     });
 }
+
 function renderRides(){
     const rides=getF(),c=document.getElementById('rides-list');
     document.getElementById('rides-count').textContent=rides.length;
-    if(!rides.length){c.innerHTML='<div class="empty-state"><i class="fas fa-car"></i><p>Keine Fahrten für '+SS[cShift]+'.</p><small>Biete selbst eine an!</small></div>';return}
+    if(!rides.length){
+        // Show ALL upcoming rides as suggestion
+        const t=new Date();t.setHours(0,0,0,0);
+        const upcoming=allR.filter(r=>new Date(r.date+'T23:59:59')>=t).slice(0,5);
+        if(upcoming.length){
+            c.innerHTML='<div style="text-align:center;padding:16px;color:var(--text-muted);font-size:13px"><p>Keine Fahrten für <strong>'+SS[cShift]+'</strong> am <strong>'+new Date(cDate+'T00:00:00').toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})+'</strong></p><p style="margin-top:4px">Aber es gibt andere Fahrten:</p></div>'+upcoming.map(r=>rc(r)).join('');
+            c.querySelectorAll('.ride-card').forEach(card=>card.addEventListener('click',()=>showDet(card.dataset.id)));
+        }else{
+            c.innerHTML='<div class="empty-state"><i class="fas fa-car"></i><p>Noch keine Fahrten vorhanden.</p><small>Biete die erste Fahrt an!</small></div>';
+        }
+        return;
+    }
     c.innerHTML=rides.map(r=>rc(r)).join('');
     c.querySelectorAll('.ride-card').forEach(card=>card.addEventListener('click',()=>showDet(card.dataset.id)));
 }
