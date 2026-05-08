@@ -203,7 +203,28 @@
         .chat-empty p{font-size:13px}
         .chat-badge{position:absolute;top:-2px;right:-2px;width:10px;height:10px;background:var(--danger);border-radius:50%;border:2px solid #fff;display:none}
         .chat-badge.show{display:block}
+        .ride-chat-btn{ 
+            width:36px;
+            height:36px;
+            border-radius:50%;
+            background:var(--primary);
+            color:#fff;
+            border:none;
+            font-size:14px;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            transition:transform .1s,background .2s;
+            box-shadow:0 2px 8px rgba(26,35,126,.3);
+        }
+        .ride-chat-btn:active{
+            transform:scale(.9);
+            background:var(--primary-dark);
+        }
 
+        @media(min-width:600px){.app-content,.auth-container{max-width:480px;margin:0 auto}.bottom-nav{max-width:480px;left:50%;transform:translateX(-50%)}.app-header{max-width:480px;left:50%;transform:translateX(-50%)}.modal-content{max-width:480px}}
+    </style>
         @media(min-width:600px){.app-content,.auth-container{max-width:480px;margin:0 auto}.bottom-nav{max-width:480px;left:50%;transform:translateX(-50%)}.app-header{max-width:480px;left:50%;transform:translateX(-50%)}.modal-content{max-width:480px}}
     </style>
 </head>
@@ -688,7 +709,9 @@ function rc(r){
     if(own)st='<br><span style="color:var(--accent);font-size:11px;font-weight:600">DEINE FAHRT</span>';
     else if(bk)st='<br><span style="color:var(--success);font-size:11px;font-weight:600">✓ GEBUCHT</span>';
     const fd=new Date(r.date+'T00:00:00').toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'});
-    return`<div class="ride-card ${own?'my-ride':''}" data-id="${r.id}"><div class="ride-card-header"><div><div class="ride-card-driver">${esc(r.driverName)}</div>${r.driverPhone?`<div class="ride-card-dept"><i class="fas fa-phone" style="font-size:10px"></i> ${esc(r.driverPhone)}</div>`:''}</div><div style="text-align:right"><span class="ride-card-shift-badge ${r.shift}">${SS[r.shift]}</span>${st}</div></div><div class="ride-card-details"><div class="ride-card-detail"><i class="fas fa-map-marker-alt"></i><span>${esc(r.startOrt)}</span></div><div class="ride-card-detail"><i class="fas fa-clock"></i><span>${esc(r.abfahrtszeit)} Uhr · ${fd}</span></div>${r.route?`<div class="ride-card-detail"><i class="fas fa-road"></i><span>${esc(r.route)}</span></div>`:''}</div><div class="ride-card-footer"><div class="seats-info ${av>0?'available':'full'}"><div class="seats-dots">${dots}</div><span>${av>0?av+' frei':'Voll'}</span></div>${r.returnTrip?'<span style="font-size:11px;color:var(--text-muted)"><i class="fas fa-exchange-alt"></i> +Rück</span>':''}</div></div>`;
+    const canChat = (own || bk) && tk > 0;
+    const chatBtn = canChat ? `<button class="ride-chat-btn" data-chat-id="${r.id}" onclick="event.stopPropagation();openChat('${r.id}','${esc(r.driverName)}','${esc(r.startOrt)}','${r.date}')"><i class="fas fa-comments"></i></button>` : '';
+    return`<div class="ride-card ${own?'my-ride':''}" data-id="${r.id}"><div class="ride-card-header"><div><div class="ride-card-driver">${esc(r.driverName)}</div>${r.driverPhone?`<div class="ride-card-dept"><i class="fas fa-phone" style="font-size:10px"></i> ${esc(r.driverPhone)}</div>`:''}</div><div style="text-align:right"><span class="ride-card-shift-badge ${r.shift}">${SS[r.shift]}</span>${st}</div></div><div class="ride-card-details"><div class="ride-card-detail"><i class="fas fa-map-marker-alt"></i><span>${esc(r.startOrt)}</span></div><div class="ride-card-detail"><i class="fas fa-clock"></i><span>${esc(r.abfahrtszeit)} Uhr · ${fd}</span></div>${r.route?`<div class="ride-card-detail"><i class="fas fa-road"></i><span>${esc(r.route)}</span></div>`:''}</div><div class="ride-card-footer"><div class="seats-info ${av>0?'available':'full'}"><div class="seats-dots">${dots}</div><span>${av>0?av+' frei':'Voll'}</span></div><div style="display:flex;align-items:center;gap:8px">${r.returnTrip?'<span style="font-size:11px;color:var(--text-muted)"><i class="fas fa-exchange-alt"></i> +Rück</span>':''}${chatBtn}</div></div></div>`;
 }
 
 function showDet(rid){
