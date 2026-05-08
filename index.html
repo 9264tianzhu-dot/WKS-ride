@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#1a237e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>WKS-Ride</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -181,6 +181,29 @@
         .info-card ol{padding-left:20px}
         .connection-bar{position:fixed;top:var(--header-height);left:0;right:0;background:var(--danger);color:#fff;text-align:center;padding:6px;font-size:12px;font-weight:600;z-index:99;display:none}
         .connection-bar.show{display:block}
+
+        /* ========== CHAT STYLES ========== */
+        .chat-container{display:flex;flex-direction:column;height:60vh;max-height:500px}
+        .chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:8px;background:var(--bg);border-radius:var(--radius-sm);margin-bottom:12px}
+        .chat-msg{max-width:80%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.4;word-wrap:break-word;position:relative}
+        .chat-msg .chat-meta{font-size:10px;color:var(--text-muted);margin-top:4px;display:flex;align-items:center;gap:4px}
+        .chat-msg.sent{align-self:flex-end;background:var(--primary);color:#fff;border-bottom-right-radius:4px}
+        .chat-msg.sent .chat-meta{color:rgba(255,255,255,.7);justify-content:flex-end}
+        .chat-msg.received{align-self:flex-start;background:#fff;color:var(--text);border-bottom-left-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .chat-msg .chat-sender{font-size:11px;font-weight:600;color:var(--primary-light);margin-bottom:2px}
+        .chat-msg.sent .chat-sender{display:none}
+        .chat-input-row{display:flex;gap:8px;align-items:center}
+        .chat-input-row input{flex:1;padding:12px 16px;border:2px solid var(--border);border-radius:24px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+        .chat-input-row input:focus{border-color:var(--primary)}
+        .chat-send-btn{width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .1s}
+        .chat-send-btn:active{transform:scale(.9)}
+        .chat-send-btn:disabled{opacity:.5;cursor:not-allowed}
+        .chat-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-muted);text-align:center;gap:8px}
+        .chat-empty i{font-size:36px;opacity:.3}
+        .chat-empty p{font-size:13px}
+        .chat-badge{position:absolute;top:-2px;right:-2px;width:10px;height:10px;background:var(--danger);border-radius:50%;border:2px solid #fff;display:none}
+        .chat-badge.show{display:block}
+
         @media(min-width:600px){.app-content,.auth-container{max-width:480px;margin:0 auto}.bottom-nav{max-width:480px;left:50%;transform:translateX(-50%)}.app-header{max-width:480px;left:50%;transform:translateX(-50%)}.modal-content{max-width:480px}}
     </style>
 </head>
@@ -383,20 +406,27 @@
             <div id="my-rides-list" class="rides-list"></div>
         </section>
 
+        <!-- CHAT LIST -->
+        <section id="tab-chat" class="tab-content">
+            <div class="page-header"><h2><i class="fas fa-comments"></i> Nachrichten</h2><p>Chats zu deinen Fahrten</p></div>
+            <div id="chat-list" class="rides-list"></div>
+        </section>
+
         <!-- INFO -->
         <section id="tab-info" class="tab-content">
             <div class="page-header"><h2><i class="fas fa-info-circle"></i> Info & Hilfe</h2></div>
             <div class="info-card"><h3>🏭 WKS Solingen</h3><p>Schillerstraße 26, 42699 Solingen</p></div>
-            <div class="info-card"><h4>📋 So funktioniert's</h4><ol><li>Registriere dich mit Name & E-Mail</li><li>Bestätige deine E-Mail Adresse</li><li>Biete Fahrten an oder buche einen Platz</li><li>Kontaktiere den Fahrer per Telefon/WhatsApp</li></ol></div>
+            <div class="info-card"><h4>📋 So funktioniert's</h4><ol><li>Registriere dich mit Name & E-Mail</li><li>Bestätige deine E-Mail Adresse</li><li>Biete Fahrten an oder buche einen Platz</li><li>Nutze den Chat um dich mit dem Fahrer abzustimmen</li></ol></div>
             <div class="info-card"><h4>🕐 Schichtzeiten</h4><p>🌅 Frühschicht: 06:00 - 14:00<br>☀️ Spätschicht: 14:00 - 22:00<br>🌙 Nachtschicht: 22:00 - 06:00<br>💼 Normalschicht: 07:30 - 16:00</p></div>
             <div class="info-card"><h4>💡 Tipps</h4><p>• Sei pünktlich am Treffpunkt<br>• Teilt die Spritkosten fair<br>• Sagt rechtzeitig ab<br>• Respektiert Nichtraucher-Wünsche</p></div>
-            <div class="info-card" style="text-align:center"><p style="color:var(--text-muted);font-size:12px">WKS-Ride v2.1 · Gemeinsam fahren 🌿</p></div>
+            <div class="info-card" style="text-align:center"><p style="color:var(--text-muted);font-size:12px">WKS-Ride v2.2 · Gemeinsam fahren 🌿</p></div>
         </section>
     </main>
 
     <nav class="bottom-nav">
         <button class="nav-item active" data-tab="home"><i class="fas fa-home"></i><span>Start</span></button>
         <button class="nav-item" data-tab="offer"><i class="fas fa-plus-circle"></i><span>Anbieten</span></button>
+        <button class="nav-item" data-tab="chat" style="position:relative"><i class="fas fa-comments"></i><span>Chat</span><span id="chat-nav-badge" class="chat-badge"></span></button>
         <button class="nav-item" data-tab="myrides"><i class="fas fa-car"></i><span>Meine</span></button>
         <button class="nav-item" data-tab="info"><i class="fas fa-info-circle"></i><span>Info</span></button>
     </nav>
@@ -421,6 +451,23 @@
     <div class="modal-content">
         <div class="modal-header"><h3>Fahrt-Details</h3><button class="modal-close" id="close-detail"><i class="fas fa-times"></i></button></div>
         <div id="detail-body" class="modal-body"></div>
+    </div>
+</div>
+
+<!-- Chat Modal -->
+<div id="chat-modal" class="modal" style="display:none">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+        <div class="modal-header"><h3 id="chat-modal-title">Chat</h3><button class="modal-close" id="close-chat"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body" style="padding:12px">
+            <div class="chat-container">
+                <div id="chat-messages" class="chat-messages"></div>
+                <div class="chat-input-row">
+                    <input type="text" id="chat-input" placeholder="Nachricht schreiben..." autocomplete="off">
+                    <button id="chat-send-btn" class="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -454,8 +501,9 @@ auth.languageCode='de';
 const SL={frueh:'Frühschicht (06:00–14:00)',spaet:'Spätschicht (14:00–22:00)',nacht:'Nachtschicht (22:00–06:00)',normal:'Normalschicht (07:30–16:00)'};
 const SS={frueh:'Frühschicht',spaet:'Spätschicht',nacht:'Nachtschicht',normal:'Normalschicht'};
 const td=()=>new Date().toISOString().split('T')[0];
-let UP=null; // user profile {uid,name,email}
+let UP=null;
 let cShift='frueh',cDate=td(),allR=[],unsubR=null,nUsers=0;
+let currentChatRideId=null,unsubChat=null;
 
 // ============================================================
 //  HELPERS
@@ -485,7 +533,7 @@ auth.onAuthStateChanged(async u=>{
 });
 
 // ============================================================
-//  REGISTER — Only Name + Email + Password
+//  REGISTER
 // ============================================================
 document.getElementById('register-form').addEventListener('submit',async e=>{
     e.preventDefault();clearMsg();
@@ -596,7 +644,7 @@ function listenRides(){
     if(unsubR)unsubR();
     unsubR=db.collection('rides').orderBy('createdAt','desc').onSnapshot(snap=>{
         allR=[];snap.forEach(d=>allR.push({id:d.id,...d.data()}));
-        renderRides();updateStats();
+        renderRides();updateStats();renderChatList();
     },err=>{console.error(err);document.getElementById('connection-bar').classList.add('show')});
 }
 async function countUsers(){
@@ -617,7 +665,6 @@ function renderRides(){
     const rides=getF(),c=document.getElementById('rides-list');
     document.getElementById('rides-count').textContent=rides.length;
     if(!rides.length){
-        // Show ALL upcoming rides as suggestion
         const t=new Date();t.setHours(0,0,0,0);
         const upcoming=allR.filter(r=>new Date(r.date+'T23:59:59')>=t).slice(0,5);
         if(upcoming.length){
@@ -651,6 +698,11 @@ function showDet(rid){
     const bk=UP&&(r.passengers||[]).find(p=>p.userId===UP.uid);
     const fd=new Date(r.date+'T00:00:00').toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
     let pass=(r.passengers&&r.passengers.length)?r.passengers.map(p=>`<div class="passenger-item"><div class="passenger-avatar">${p.name.split(' ').map(n=>n[0]).join('').toUpperCase()}</div><span>${esc(p.name)}</span></div>`).join(''):'<p style="color:var(--text-muted);font-size:13px">Noch keine Mitfahrer</p>';
+
+    // Show chat button if user is driver or passenger
+    const canChat = own || bk;
+    let chatBtn = canChat ? `<button class="btn btn-outline" id="btn-open-chat" style="margin-top:12px;width:100%"><i class="fas fa-comments"></i> Chat öffnen</button>` : '';
+
     let act='';
     if(own)act=`<div class="ride-actions"><button class="btn btn-danger" id="btn-del"><i class="fas fa-trash"></i> Löschen</button></div>`;
     else if(bk)act=`<div class="ride-actions">${r.driverPhone?`<button class="btn btn-success btn-sm" onclick="window.open('https://wa.me/${cleanPh(r.driverPhone)}','_blank')"><i class="fab fa-whatsapp"></i></button>`:''}<button class="btn btn-danger btn-sm" id="btn-cancel"><i class="fas fa-times"></i> Stornieren</button></div>`;
@@ -677,9 +729,13 @@ function showDet(rid){
         </div>
         <div class="ride-detail-section"><h4>Mitfahrer (${(r.passengers||[]).length}/${r.seats})</h4>
             <div class="passengers-list">${pass}</div>
-        </div>${act}`;
+        </div>${act}${chatBtn}`;
 
     showM('detail-modal');
+
+    // Chat button handler
+    const chatBtnEl = document.getElementById('btn-open-chat');
+    if(chatBtnEl) chatBtnEl.onclick = () => { hideM('detail-modal'); openChat(r.id, r.driverName, r.startOrt, r.date); };
 
     const bb=document.getElementById('btn-book');
     if(bb)bb.onclick=async()=>{bb.disabled=true;bb.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
@@ -723,6 +779,136 @@ function updateStats(){
 }
 
 // ============================================================
+//  CHAT FUNCTIONALITY
+// ============================================================
+function renderChatList(){
+    if(!UP) return;
+    const c = document.getElementById('chat-list');
+    // Get rides where user is driver or passenger
+    const myChats = allR.filter(r => {
+        const isDriver = r.driverId === UP.uid;
+        const isPassenger = (r.passengers||[]).find(p => p.userId === UP.uid);
+        const hasParticipants = (r.passengers||[]).length > 0;
+        return (isDriver || isPassenger) && hasParticipants;
+    });
+
+    if(!myChats.length){
+        c.innerHTML = '<div class="empty-state"><i class="fas fa-comments"></i><p>Noch keine Chats</p><small>Buche oder biete eine Fahrt an, um zu chatten.</small></div>';
+        return;
+    }
+
+    c.innerHTML = myChats.map(r => {
+        const fd = new Date(r.date+'T00:00:00').toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'});
+        const isDriver = r.driverId === UP.uid;
+        return `<div class="ride-card" data-chat-ride="${r.id}" style="cursor:pointer">
+            <div class="ride-card-header">
+                <div>
+                    <div class="ride-card-driver"><i class="fas fa-comments" style="color:var(--primary);margin-right:6px"></i>${isDriver ? 'Deine Fahrt' : esc(r.driverName)}</div>
+                    <div class="ride-card-dept">${esc(r.startOrt)} · ${fd}</div>
+                </div>
+                <span class="ride-card-shift-badge ${r.shift}">${SS[r.shift]}</span>
+            </div>
+            <div class="ride-card-details">
+                <div class="ride-card-detail"><i class="fas fa-users"></i><span>${(r.passengers||[]).length} Mitfahrer</span></div>
+            </div>
+        </div>`;
+    }).join('');
+
+    c.querySelectorAll('[data-chat-ride]').forEach(card => {
+        card.addEventListener('click', () => {
+            const rid = card.dataset.chatRide;
+            const r = allR.find(x => x.id === rid);
+            if(r) openChat(r.id, r.driverName, r.startOrt, r.date);
+        });
+    });
+}
+
+function openChat(rideId, driverName, startOrt, date){
+    currentChatRideId = rideId;
+    const fd = new Date(date+'T00:00:00').toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'});
+    document.getElementById('chat-modal-title').textContent = `${startOrt} · ${fd}`;
+    document.getElementById('chat-messages').innerHTML = '<div class="chat-empty"><i class="fas fa-comments"></i><p>Lade Nachrichten...</p></div>';
+    document.getElementById('chat-input').value = '';
+    showM('chat-modal');
+
+    // Listen to messages in realtime
+    if(unsubChat) unsubChat();
+    unsubChat = db.collection('rides').doc(rideId).collection('messages')
+        .orderBy('timestamp','asc')
+        .onSnapshot(snap => {
+            const msgs = [];
+            snap.forEach(d => msgs.push({id:d.id,...d.data()}));
+            renderChatMessages(msgs);
+        }, err => {
+            console.error('Chat error:', err);
+            document.getElementById('chat-messages').innerHTML = '<div class="chat-empty"><i class="fas fa-exclamation-circle"></i><p>Fehler beim Laden</p></div>';
+        });
+}
+
+function renderChatMessages(msgs){
+    const container = document.getElementById('chat-messages');
+    if(!msgs.length){
+        container.innerHTML = '<div class="chat-empty"><i class="fas fa-comments"></i><p>Noch keine Nachrichten</p><p style="font-size:12px">Schreib die erste Nachricht!</p></div>';
+        return;
+    }
+    container.innerHTML = msgs.map(m => {
+        const isMine = m.senderId === UP.uid;
+        const time = m.timestamp ? new Date(m.timestamp.toDate ? m.timestamp.toDate() : m.timestamp).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) : '';
+        return `<div class="chat-msg ${isMine?'sent':'received'}">
+            ${!isMine?`<div class="chat-sender">${esc(m.senderName)}</div>`:''}
+            <div>${esc(m.text)}</div>
+            <div class="chat-meta"><span>${time}</span></div>
+        </div>`;
+    }).join('');
+    // Scroll to bottom
+    container.scrollTop = container.scrollHeight;
+}
+
+async function sendMessage(){
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if(!text || !currentChatRideId || !UP) return;
+
+    const btn = document.getElementById('chat-send-btn');
+    btn.disabled = true;
+    input.value = '';
+
+    try{
+        await db.collection('rides').doc(currentChatRideId).collection('messages').add({
+            senderId: UP.uid,
+            senderName: UP.name,
+            text: text,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+    }catch(e){
+        toast('Nachricht konnte nicht gesendet werden','error');
+        input.value = text;
+    }
+    btn.disabled = false;
+    input.focus();
+}
+
+// Chat send button
+document.getElementById('chat-send-btn').addEventListener('click', sendMessage);
+
+// Send on Enter
+document.getElementById('chat-input').addEventListener('keypress', e => {
+    if(e.key === 'Enter') { e.preventDefault(); sendMessage(); }
+});
+
+// Close chat modal
+document.getElementById('close-chat').addEventListener('click', () => {
+    hideM('chat-modal');
+    if(unsubChat){ unsubChat(); unsubChat=null; }
+    currentChatRideId = null;
+});
+document.querySelector('#chat-modal .modal-overlay').addEventListener('click', () => {
+    hideM('chat-modal');
+    if(unsubChat){ unsubChat(); unsubChat=null; }
+    currentChatRideId = null;
+});
+
+// ============================================================
 //  EVENTS
 // ============================================================
 // Nav
@@ -731,6 +917,7 @@ document.querySelectorAll('.nav-item').forEach(b=>b.addEventListener('click',()=
     document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.tab===t));
     document.querySelectorAll('.tab-content').forEach(s=>s.classList.toggle('active',s.id==='tab-'+t));
     if(t==='myrides')renderMy('offered');
+    if(t==='chat')renderChatList();
 }));
 // Shift
 document.querySelectorAll('.shift-btn').forEach(b=>b.addEventListener('click',()=>{
@@ -771,7 +958,6 @@ document.getElementById('offer-form').addEventListener('submit',async e=>{
         document.getElementById('o-seats').value=3;document.getElementById('seat-d').textContent='3';
         document.getElementById('o-date').value=td();document.getElementById('o-return').checked=true;
         document.querySelector('input[name="o-shift"][value="frueh"]').checked=true;
-        // Go home
         document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.tab==='home'));
         document.querySelectorAll('.tab-content').forEach(s=>s.classList.toggle('active',s.id==='tab-home'));
     }catch(er){toast('Fehler: '+er.message,'error')}
@@ -804,7 +990,7 @@ document.querySelector('#detail-modal .modal-overlay').addEventListener('click',
 
 // Logout
 document.getElementById('btn-logout').addEventListener('click',async()=>{
-    if(confirm('Abmelden?')){if(unsubR)unsubR();await auth.signOut();UP=null;allR=[];hideM('profile-modal')}
+    if(confirm('Abmelden?')){if(unsubR)unsubR();if(unsubChat)unsubChat();await auth.signOut();UP=null;allR=[];hideM('profile-modal')}
 });
 
 // Online/offline
